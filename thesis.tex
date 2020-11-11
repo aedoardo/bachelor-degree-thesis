@@ -72,17 +72,90 @@
 \begin{large}
 Negli ultimi decenni il numero di dispositivi collegati ad Internet è cresciuto esponenzialmente. Ormai, nel 2020, non si hanno più solamente computer o cellulari in rete ma anche elettrodomestici, macchine industriali e strumenti medici, tutti dispositivi che qualche anno fa erano offline. Tutto ciò fa riferimento all'IoT, l'\textit{Internet of Things}. \\
 Parallelamente allo sviluppo di queste nuove tecnologie, sono stati studiati nuovi protocolli affinché i dispositivi potessero essere utilizzati in maniera efficiente. Ad esempio ci sono alcuni sensori i quali permettono di misurare temperatura ed umidità di una stanza e funzionano attraverso l'uso di una semplice pila; dunque è necessario andare a ridurre il costo energetico della connessione così da aumentare la durata di utilizzo del dispositivo. \\
-Alcuni esempi di protocolli possono essere: MQTT, CoAP, AMQP e WebSocket. Ovviamente tutti i protocolli hanno la possibilità di essere integrati con TLS (\textit{Transport Layer Security}) così da poter garantire una maggiore sicurezza nello scambio dei dati; questo, però, potrebbe andare a gravare sui consumi del dispositivo poiché dovrebbero essere effettuati più calcoli affinché avvenga il trasporto dei dati. Inoltre, con l'aumento di questi nuovi dispositivi sono aumentate anche le possibili minacce relative all'IoT. Un esempio è il malware Mirai che, nel 2016, ha infettato milioni di dispositivi rendendoli parte di una botnet la quale, successivamente, ha attaccato attraverso un DDoS il fornitore di servizi DNS Dyn così da rendere inaccessibili milioni di siti web. A causa di questa tipologia d'attacco, sempre più comune, i protocolli sviluppati devono presentarsi sicuri e robusti.\\
+Alcuni esempi di protocolli possono essere: MQTT, CoAP, AMQP e WebSocket. Ovviamente tutti i protocolli hanno la possibilità di essere integrati con TLS (\textit{Transport Layer Security}) così da poter garantire una maggiore sicurezza nello scambio dei dati; questo, però, potrebbe andare a gravare sui consumi del dispositivo poiché dovrebbero essere effettuati più calcoli affinché avvenga il trasporto dei dati. Inoltre, con l'aumento di questi nuovi dispositivi sono aumentate anche le possibili minacce relative all'IoT. Un esempio è il malware Mirai che, nel 2016, ha infettato milioni di dispositivi rendendoli parte di una botnet la quale, successivamente, ha attaccato attraverso un DDoS il fornitore di servizi DNS Dyn così da rendere inaccessibili milioni di siti web. A causa, anche, di questa tipologia d'attacco, sempre più comune, i protocolli sviluppati devono presentarsi sicuri e robusti.\\
 
-In questa relazione viene descritto lo studio effettuato su uno dei maggiori protocolli nell'IoT: MQTT. Nello specifico durante l'attività di tirocinio siamo andati alla ricerca di possibili anormalità e/o violazioni del protocollo da parte dei broker server i quali dovrebbero rispettare ogni standard definito per MQTT.
+In questa relazione viene descritto lo studio effettuato su uno dei maggiori protocolli nell'IoT: MQTT. Nello specifico durante l'attività di tirocinio siamo andati alla ricerca di possibili anomalie e/o violazioni del protocollo da parte dei broker server i quali dovrebbero rispettare ogni standard definito per MQTT.
 
 \end{large}
 
-\mainmatter
+
 \chapter{MQTT}
 
 \begin{large}
-ciao
+
+\section{Descrizione del protocollo}
+
+MQTT, acronimo di \textit{Message Queuing Telemetry Transport}, è un protocollo di tipo \textit{publish-subscribe} il quale permette il trasporto di messaggi tra diversi dispositivi tramite TCP/IP. Il protocollo è molto utilizzato in ambito IoT per la sua semplicità e anche per la banda la cui richiesta è davvero bassa. \\
+
+MQTT presenta un modello di architettura differente, ad esempio, dal tipico client/server del protocollo HTTP; infatti adotta il meccanisco \textit{publish-subscribe} (pub/sub) attraverso l'utilizzo di un \textit{broker}. Il funzionamento del modello pub/sub avviene attraverso la pubblicazione e la sottoscrizione da parte del client a diversi topic, che possono essere paragonati a dei canali di comunicazione. In MQTT il publisher e il subscriber non comunicano mai direttamente e non sono neppure consapevoli della presenza dell'uno e dell'altro: il collegamento è gestito dal broker il cui compito è quello di filtrare i messaggi che riceve e distribuirli ai vari subscribers. 
+In questo capitolo sono analizzate le principali caratteristiche che il protocollo MQTT mette a disposizione.
+%shodan stats (?)
+
+\subsection{Topic}
+Nel protocollo MQTT un topic non è altro che una stringa codificata in UTF-8 che il broker utilizza per filtrare i messaggi da inviare successivamente ad ogni client sottoscritto a quel topic. I topic sono case-sensitive, quindi bisogna prestare attenzione alle lettere maiuscole o minuscole, e la lunghezza minima dev'essere di un carattere. Inoltre, MQTT mette a disposizione del client dei \textit{wildcard}, i quali permettono di connettersi simultaneamente a più topic; uno è rappresentato dal simbolo +, mentre l'altro dal simbolo \#. Il primo è chiamato \textit{single-level} wildcard, mentre il secondo \textit{multi-level} wildcard. Ci sono dei topic, a cui non si può pubblicare alcun messaggio, riservati allo stato del sistema e sono quei topic che cominciano per \$SYS/. \\
+Alcuni esempi di topic validi possono essere i seguenti: 
+\begin{enumerate}
+\item \textit{casa/luci/sala} - topic specifico per le luci della sala;
+\item \textit{casa/+/sala} - include tutti i topic dei dispositivi che fanno riferimento alla sala (luci comprese);
+\item \textit{casa/\#} - include tutti i topic che fanno riferimento alla casa.
+\end{enumerate}
+
+
+\subsection{Connessione al broker}
+Come scritto nell'introduzione di questo capitolo, la connessione avviene solamente fra client e broker. Per client intendiamo un qualsiasi dispositivo il quale permette di gestire una connessione ad un broker, che si comporta come un server. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/connect-connack.png}
+\caption{Flusso connessione al broker MQTT.}
+\label{fig:connect-connack}
+\end{figure}
+
+Come si può vedere dalla Figura \ref{fig:connect-connack}, la connessione avviene tramite lo scambio di due pacchetti: \textit{connect}, inviato dal client al broker, e \textit{connack} inviato dal broker al client. Il pacchetto connect è così strutturato:
+\begin{table}[h]
+\caption{Struttura pacchetto connect.}
+\label{tab:connect}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} \\
+\midrule
+\textit{clientId} & rappresenta l'identificativo del client che chiede di connettersi \\
+\textit{cleanSession} & valore booleano il quale specifica se la connessione è persistente o meno \\
+\textit{username} & rappresenta l'username necessario affinché avvenga la connessione \\
+\textit{password} & la password associata all'username \\
+\textit{lastWillTopic} & permette di notificare gli altri client in caso di crash del client \\
+\textit{lastWillQos} & permette di notificare gli altri client in caso di crash del client \\
+\textit{lastWillMessage} & permette di notificare gli altri client in caso di crash del client \\
+\textit{lastWillRetain} & permette di notificare gli altri client in caso di crash del client \\
+\textit{keepAlive} & rappresenta in secondi l'intervallo massimo in cui broker e client possono non inviarsi messaggi \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Il pacchetto connack, invece, è così strutturato: \\
+\begin{table}[h]
+\caption{Struttura pacchetto connack.}
+\label{tab:connack}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} \\
+\midrule
+\textit{sessionPresent} & flag riferita al cleanSession del pacchetto connect \\
+\textit{returnCode} & stato della connessione \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per quanto riguarda il returnCode descritto nella Tabella \ref{tab:connack}, questo è un valore che va da 0 a 5:
+\begin{itemize}
+\item 0: connessione accettata;
+\item 1: connessione rifiutata, versione del protocollo non valida;
+\item 2: connessione rifiutata, clientId non valido;
+\item 3: connessione rifiutata, server non disponibile;
+\item 4: connessione rifiutata, username o password errati;
+\item 5: connessione rifiutata, non autorizzati.
+\end{itemize}
+
 \end{large}
 
 
@@ -90,7 +163,7 @@ ciao
 % bibliography
 %\cleardoublepage
 %\phantomsection
-\bibliographystyle{sapthesis} % BibTeX style
-\bibliography{bibliography} % BibTeX database without .bib extension
+%\bibliographystyle{sapthesis} % BibTeX style
+%\bibliography{bibliography} % BibTeX database without .bib extension
 
 \end{document}

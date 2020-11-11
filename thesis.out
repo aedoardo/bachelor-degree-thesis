@@ -1,2 +1,5 @@
 \BOOKMARK [0][-]{chapter.1}{Introduzione}{}% 1
 \BOOKMARK [0][-]{chapter.2}{MQTT}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Descrizione del protocollo}{chapter.2}% 3
+\BOOKMARK [2][-]{subsection.2.1.1}{Topic}{section.2.1}% 4
+\BOOKMARK [2][-]{subsection.2.1.2}{Connessione al broker}{section.2.1}% 5
