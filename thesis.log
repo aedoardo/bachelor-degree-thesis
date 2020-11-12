@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  11 NOV 2020 16:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  12 NOV 2020 12:48
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -894,7 +894,11 @@ Package: xfp 2020-05-15 L3 Floating point unit
 )
 (E:\latex\tex/latex/setspace\setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (thesis.aux)
+) (thesis.aux
+
+LaTeX Warning: Label `tab:subscribe' multiply defined.
+
+)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
@@ -915,8 +919,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
 LaTeX Font Info:    ... okay on input line 45.
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 45
 .
-
-(E:\latex\tex/latex/lm\t1lmr.fd
+ (E:\latex\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 *geometry* driver: auto-detecting
@@ -1027,7 +1030,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<sapienza-MLred-pos.pdf, id=23, 288.07625pt x 89.33376pt>
+<sapienza-MLred-pos.pdf, id=27, 288.07625pt x 89.33376pt>
 File: sapienza-MLred-pos.pdf Graphic file (type pdf)
 <use sapienza-MLred-pos.pdf>
 Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 50.
@@ -1123,48 +1126,82 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
 [3
 
 ]
-<images/connect-connack.png, id=83, 532.99126pt x 101.37875pt>
+<images/connect-connack.png, id=88, 532.99126pt x 101.37875pt>
 File: images/connect-connack.png Graphic file (type png)
 <use images/connect-connack.png>
 Package pdftex.def Info: images/connect-connack.png  used on input line 109.
 (pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
 
-Overfull \hbox (21.91628pt too wide) in paragraph at lines 118--133
+Overfull \hbox (4.69255pt too wide) in paragraph at lines 118--132
 [][] 
  []
 
 
-Overfull \hbox (14.96391pt too wide) in paragraph at lines 139--147
+Overfull \hbox (14.96391pt too wide) in paragraph at lines 138--146
 [][] 
  []
 
 [4 <./images/connect-connack.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
+<images/subscribe-suback.png, id=102, 532.99126pt x 101.37875pt>
+File: images/subscribe-suback.png Graphic file (type png)
+<use images/subscribe-suback.png>
+Package pdftex.def Info: images/subscribe-suback.png  used on input line 165.
+(pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
+
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 176--184
+[][] 
+ []
+
+[5 <./images/subscribe-suback.png>]
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 189--197
+[][] 
+ []
+
+<images/publish-qos0.png, id=113, 532.99126pt x 101.37875pt>
+File: images/publish-qos0.png Graphic file (type png)
+<use images/publish-qos0.png>
+Package pdftex.def Info: images/publish-qos0.png  used on input line 214.
+(pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
+<images/publish-qos1.png, id=114, 532.99126pt x 101.37875pt>
+File: images/publish-qos1.png Graphic file (type png)
+<use images/publish-qos1.png>
+Package pdftex.def Info: images/publish-qos1.png  used on input line 222.
+(pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
+[6 <./images/publish-qos0.png>]
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 232--239
+[][] 
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 252.
+[7 <./images/publish-qos1.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 252.
  (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 252.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 252.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 65C588EBFAF583F56F0905F6FCCF3E89;290.
+(rerunfilecheck)             Checksum: B262344563177BF2A53542076D40A7C7;373.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 12377 strings out of 480790
- 195454 string characters out of 2914071
+ 12424 strings out of 480790
+ 196273 string characters out of 2914071
  692045 words of memory out of 3000000
- 28002 multiletter control sequences out of 15000+200000
- 613172 words of font info for 106 fonts, out of 3000000 for 9000
+ 28023 multiletter control sequences out of 15000+200000
+ 613536 words of font info for 110 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,11n,101p,957b,543s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,11n,101p,957b,544s stack positions out of 5000i,500n,10000p,200000b,50000s
 {E:/latex/fonts/enc/dvips/lm/lm-ts1.enc}{E:/latex/fonts/enc/dvips/lm/lm-ec.en
 c}<E:/latex/fonts/type1/public/lm/lmbx10.pfb><E:/latex/fonts/type1/public/lm/lm
 bx12.pfb><E:/latex/fonts/type1/public/lm/lmr10.pfb><E:/latex/fonts/type1/public
 /lm/lmr12.pfb><E:/latex/fonts/type1/public/lm/lmr7.pfb><E:/latex/fonts/type1/pu
 blic/lm/lmri10.pfb><E:/latex/fonts/type1/public/lm/lmri12.pfb><E:/latex/fonts/t
 ype1/public/lm/lmss10.pfb><E:/latex/fonts/type1/public/lm/lmss17.pfb>
-Output written on thesis.pdf (11 pages, 254384 bytes).
+Output written on thesis.pdf (13 pages, 281774 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 25139 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 182 PDF objects out of 1000 (max. 8388607)
+ 39 named destinations out of 1000 (max. 500000)
+ 25162 words of extra memory for PDF output out of 29859 (max. 10000000)
 

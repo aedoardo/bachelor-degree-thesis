@@ -123,10 +123,9 @@ Come si può vedere dalla Figura \ref{fig:connect-connack}, la connessione avvie
 \textit{cleanSession} & valore booleano il quale specifica se la connessione è persistente o meno \\
 \textit{username} & rappresenta l'username necessario affinché avvenga la connessione \\
 \textit{password} & la password associata all'username \\
-\textit{lastWillTopic} & permette di notificare gli altri client in caso di crash del client \\
-\textit{lastWillQos} & permette di notificare gli altri client in caso di crash del client \\
-\textit{lastWillMessage} & permette di notificare gli altri client in caso di crash del client \\
-\textit{lastWillRetain} & permette di notificare gli altri client in caso di crash del client \\
+\textit{willRetain} & viene letto solo se \textit{willFlag} è true \\
+\textit{willQos} & viene letto solo se \textit{willFlag} è true \\
+\textit{willFlag} & permette di notificare un messaggio specificato dal client nel payload in caso di disconnessione anomala \\
 \textit{keepAlive} & rappresenta in secondi l'intervallo massimo in cui broker e client possono non inviarsi messaggi \\
 \bottomrule
 \end{tabular}
@@ -146,7 +145,7 @@ Il pacchetto connack, invece, è così strutturato: \\
 \end{tabular}
 \end{table}
 
-Per quanto riguarda il returnCode descritto nella Tabella \ref{tab:connack}, questo è un valore che va da 0 a 5:
+Per quanto riguarda il \textit{returnCode} descritto nella Tabella \ref{tab:connack}, questo è un valore che va da 0 a 5:
 \begin{itemize}
 \item 0: connessione accettata;
 \item 1: connessione rifiutata, versione del protocollo non valida;
@@ -156,6 +155,90 @@ Per quanto riguarda il returnCode descritto nella Tabella \ref{tab:connack}, que
 \item 5: connessione rifiutata, non autorizzati.
 \end{itemize}
 
+\subsection{Sottoscrizione e pubblicazione}
+Come scritto più volte, MQTT è un protocollo che adotta un meccanismo chiamato \textit{publisher/subscribe}; perciò due aziono fondamentali che un client può compiere sono quelle chiamate \textit{publish} e \textit{subscribe}.
+\subsubsection{Subscribe}
+L'azione subscribe permette al client di sottoscriversi a un determinato topic passato nel pacchetto.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/subscribe-suback.png}
+\caption{Flusso subscription ad un topic in MQTT.}
+\label{fig:subscribe-suback}
+\end{figure}
+
+Come si nota dalla figura \ref{fig:subscribe-suback}, la sottoscrizione avviene semplicemente con lo scambio di due pacchetti: \textit{subscribe}, dal client al broker, e \textit{suback}, dal broker al client. Il primo pacchetto rappresenta la richiesta di sottoscrizione ad un determinato topic, il secondo invece conferma la sottoscrizione a quel topic. \\
+La struttura del subscribe packet è la seguente:
+
+\begin{table}[h]
+\caption{Struttura pacchetto subscribe.}
+\label{tab:subscribe}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} \\
+\midrule
+\textit{packetId} & l'identificatore del pacchetto \\
+\textit{payload} & una lista di QoS e topic a cui sottoscriversi \\
+\bottomrule
+\end{tabular}
+\end{table}
+Il pacchetto suback, invece, è così strutturato:
+\begin{table}[h]
+\caption{Struttura pacchetto subscribe.}
+\label{tab:subscribe}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} \\
+\midrule
+\textit{packetId} & l'identificatore del pacchetto a cui rispondere \\
+\textit{returnCode} & lista di \textit{returnCode} che rappresentano lo stato della sottoscrizione \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Anche in questo caso il \textit{returnCode} può assumere diversi valori, riassunti in questa lista:
+\begin{enumerate}
+\item 0: successo, massimo QoS 0;
+\item 1: successo, massimo QoS 1;
+\item 2: successo, massimo QoS 2;
+\item 128: sottoscrizione fallita.
+\end{enumerate}
+
+\subsubsection{Publish}
+La pubblicazione di un messaggio in MQTT è più complicata rispetto alla fase di sottoscrizione al topic. Prima di tutto, bisogna introdurre il concetto di QoS, \textit{Quality of Service}. Il QoS è paragonabile ad un contratto che viene stipulato tra client e broker; esistono tre diversi livelli: QoS 0, QoS 1, QoS 2.
+
+
+Nel Quality of Service di livello 0 il payload del pacchetto viene pubblicato immediatamente. In questo caso non c'è garanzia sull'effettiva pubblicazione del messaggio.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/publish-qos0.png}
+\caption{Flusso publish con QoS 0.}
+\label{fig:qos-0pub}
+\end{figure}
+
+Nel caso del Quality of Service di livello 1 viene garantita la pubblicazione ad almeno un destinatario.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/publish-qos1.png}
+\caption{Flusso publish con QoS 1.}
+\label{fig:qos-1pub}
+\end{figure}
+
+Come si vede dalla Figura \ref{fig:qos-1pub}, il client riceve dal broker il pacchetto \textit{puback} solo dopo aver pubblicato il pacchetto publish. 
+Il pacchetto puback è così strutturato:
+\begin{table}[h]
+\caption{Struttura pacchetto puback.}
+\label{tab:puback}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} \\
+\midrule
+\textit{packetId} & l'identificatore del pacchetto a cui si riferisce il puback \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Questo meccanismo permette al client di inviare nuovamente il pacchetto publish nel caso in cui, dopo un certo intervallo di tempo, non abbia ancora ricevuto il puback dal broker; in questo caso, nel pacchetto publish, il campo \textit{dup} sarà impostato come true.
 \end{large}
 
 
