@@ -204,6 +204,20 @@ Anche in questo caso il \textit{returnCode} può assumere diversi valori, riassu
 \item 128: sottoscrizione fallita.
 \end{enumerate}
 
+All'azione di sottoscrizione corrisponde anche un'azione di disiscrizione dal topic che avviene attraverso il pacchetto \textit{unsubscribe}. Quest'ultimo è così strutturato:
+\begin{table}[h]
+\caption{Struttura pacchetto unsubscribe.}
+\label{tab:unsubscribe}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} \\
+\midrule
+\textit{packetId} & l'identificatore del pacchetto a cui rispondere \\
+\textit{topics} & lista di topic da cui disiscriversi \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsubsection{Publish}
 La pubblicazione di un messaggio in MQTT è più complicata rispetto alla fase di sottoscrizione al topic. Prima di tutto, bisogna introdurre il concetto di QoS, \textit{Quality of Service}. Il QoS è paragonabile ad un contratto che viene stipulato tra client e broker; esistono tre diversi livelli: QoS 0, QoS 1, QoS 2.
 
@@ -233,12 +247,55 @@ Il pacchetto puback è così strutturato:
 \toprule
 \textbf{Parametro} & \textbf{Descrizione} \\
 \midrule
-\textit{packetId} & l'identificatore del pacchetto a cui si riferisce il puback \\
+\textit{packetId} & l'identificatore del pacchetto publish \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Questo meccanismo permette al client di inviare nuovamente il pacchetto publish nel caso in cui, dopo un certo intervallo di tempo, non abbia ancora ricevuto il puback dal broker; in questo caso, nel pacchetto publish, il campo \textit{dup} sarà impostato come true.
+Questo meccanismo permette al client di inviare nuovamente il pacchetto publish nel caso in cui, dopo un certo intervallo di tempo, non abbia ancora ricevuto il puback dal broker; in questo caso, nel pacchetto publish, il campo \textit{dup} sarà impostato come true. Inoltre, il client mantiene in memoria il pacchetto publish finché non riceve il puback.
+
+Infine abbiamo il QoS di livello 2 il quale dà maggiore affidabilità ma è più lento rispetto ai precedenti livelli.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/publish-qos2.png}
+\caption{Flusso publish con QoS 2.}
+\label{fig:qos-2pub}
+\end{figure}
+
+Come si vede dalla Figura \ref{fig:qos-2pub} abbiamo più messaggi scambiati fra client e broker. Questo meccanismo assicura che il messaggio sia ricevuto solamente una volta dai destinatari; il livello 2, perciò, dà un maggiore livello di sicurezza al client.
+Nel caso in cui il pacchetto vada perso, dopo un certo intervallo di tempo il client trasmetterà nuovamente il pacchetto e resterà in attesa della risposta da parte del broker. \\
+La struttura dei pacchetti è la stessa che si può vedere nella Tabella \ref{tab:puback}. \\
+
+Adesso che sono stati analizzati i differenti QoS, si può analizzare nel dettaglio il publish, il pacchetto più complicato del protocollo.
+Il pacchetto ha i seguenti campi:
+\begin{table}[h]
+\caption{Struttura pacchetto publish.}
+\label{tab:publish}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} \\
+\midrule
+\textit{packetId} & l'identificatore del pacchetto \\
+\textit{topic} & il topic a cui si vuole pubblicare il messaggio \\
+\textit{qos} & il Quality of Service del pacchetto \\
+\textit{retainFlag} & booleana per il \textit{retained} \\
+\textit{payload} & il contenuto del messaggio \\
+\textit{dup} & booleana che indica se il messaggio è un duplicato \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Dopo aver ricevuto il pacchetto il broker processa il messaggio in base al QoS; una volta processato invia il pacchetto a tutti i client sottoscritti al topic.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/publish-flow-example.png}
+\caption{Esempio di pubblicazione di un pacchetto.}
+\label{fig:publish-flow-example}
+\end{figure}
+
+
 \end{large}
 
 
