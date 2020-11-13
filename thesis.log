@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  13 NOV 2020 11:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  13 NOV 2020 12:03
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1030,7 +1030,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<sapienza-MLred-pos.pdf, id=27, 288.07625pt x 89.33376pt>
+<sapienza-MLred-pos.pdf, id=31, 288.07625pt x 89.33376pt>
 File: sapienza-MLred-pos.pdf Graphic file (type pdf)
 <use sapienza-MLred-pos.pdf>
 Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 50.
@@ -1126,7 +1126,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--89
 [3
 
 ]
-<images/connect-connack.png, id=88, 532.99126pt x 101.37875pt>
+<images/connect-connack.png, id=93, 532.99126pt x 101.37875pt>
 File: images/connect-connack.png Graphic file (type png)
 <use images/connect-connack.png>
 Package pdftex.def Info: images/connect-connack.png  used on input line 109.
@@ -1142,7 +1142,7 @@ Overfull \hbox (14.96391pt too wide) in paragraph at lines 138--146
  []
 
 [4 <./images/connect-connack.png>]
-<images/subscribe-suback.png, id=102, 532.99126pt x 101.37875pt>
+<images/subscribe-suback.png, id=107, 532.99126pt x 101.37875pt>
 File: images/subscribe-suback.png Graphic file (type png)
 <use images/subscribe-suback.png>
 Package pdftex.def Info: images/subscribe-suback.png  used on input line 165.
@@ -1162,13 +1162,13 @@ Overfull \hbox (3.13127pt too wide) in paragraph at lines 211--219
 [][] 
  []
 
-<images/publish-qos0.png, id=113, 532.99126pt x 101.37875pt>
+<images/publish-qos0.png, id=118, 532.99126pt x 101.37875pt>
 File: images/publish-qos0.png Graphic file (type png)
 <use images/publish-qos0.png>
 Package pdftex.def Info: images/publish-qos0.png  used on input line 228.
 (pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
 [6]
-<images/publish-qos1.png, id=126, 532.99126pt x 101.37875pt>
+<images/publish-qos1.png, id=131, 532.99126pt x 101.37875pt>
 File: images/publish-qos1.png Graphic file (type png)
 <use images/publish-qos1.png>
 Package pdftex.def Info: images/publish-qos1.png  used on input line 236.
@@ -1178,7 +1178,7 @@ Overfull \hbox (3.13127pt too wide) in paragraph at lines 246--253
 [][] 
  []
 
-<images/publish-qos2.png, id=128, 532.99126pt x 101.37875pt>
+<images/publish-qos2.png, id=133, 532.99126pt x 101.37875pt>
 File: images/publish-qos2.png Graphic file (type png)
 <use images/publish-qos2.png>
 Package pdftex.def Info: images/publish-qos2.png  used on input line 261.
@@ -1196,31 +1196,35 @@ Overfull \hbox (3.13127pt too wide) in paragraph at lines 275--287
 [][] 
  []
 
-<images/publish-flow-example.png, id=142, 482.80376pt x 272.01625pt>
+<images/publish-flow-example.png, id=147, 482.80376pt x 272.01625pt>
 File: images/publish-flow-example.png Graphic file (type png)
 <use images/publish-flow-example.png>
 Package pdftex.def Info: images/publish-flow-example.png  used on input line 29
 3.
 (pdftex.def)             Requested size: 277.19879pt x 156.17984pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 309.
-[8 <./images/publish-qos2.png> <./images/publish-flow-example.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 309.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <./images/publish-qos2.png> <./images/publish-flow-example.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 312.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 312.
  (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 309.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 309.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 312.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 312.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: B262344563177BF2A53542076D40A7C7;373.
+(rerunfilecheck)             Checksum: 4F9C04E6B4E1B36C1DFA632069FDEE40;447.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 12449 strings out of 480790
- 196805 string characters out of 2914071
+ 12457 strings out of 480790
+ 196902 string characters out of 2914071
  692045 words of memory out of 3000000
- 28037 multiletter control sequences out of 15000+200000
- 613718 words of font info for 112 fonts, out of 3000000 for 9000
+ 28038 multiletter control sequences out of 15000+200000
+ 613976 words of font info for 114 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,11n,101p,957b,544s stack positions out of 5000i,500n,10000p,200000b,50000s
 {E:/latex/fonts/enc/dvips/lm/lm-ts1.enc}{E:/latex/fonts/enc/dvips/lm/lm-ec.en
@@ -1229,9 +1233,9 @@ bx12.pfb><E:/latex/fonts/type1/public/lm/lmr10.pfb><E:/latex/fonts/type1/public
 /lm/lmr12.pfb><E:/latex/fonts/type1/public/lm/lmr7.pfb><E:/latex/fonts/type1/pu
 blic/lm/lmri10.pfb><E:/latex/fonts/type1/public/lm/lmri12.pfb><E:/latex/fonts/t
 ype1/public/lm/lmss10.pfb><E:/latex/fonts/type1/public/lm/lmss17.pfb>
-Output written on thesis.pdf (14 pages, 303962 bytes).
+Output written on thesis.pdf (15 pages, 307515 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
- 25172 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 207 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
+ 25180 words of extra memory for PDF output out of 29859 (max. 10000000)
 

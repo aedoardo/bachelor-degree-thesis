@@ -295,6 +295,9 @@ Dopo aver ricevuto il pacchetto il broker processa il messaggio in base al QoS; 
 \label{fig:publish-flow-example}
 \end{figure}
 
+\subsection{Altre caratteristiche}
+\subsubsection{Retained message}
+Un \textit{retained message} è semplicemente un pacchetto che ha impostato il valore true della \textit{retainFlag}. Di solito il broker una volta che riceve un messaggio da pubblicare su un topic, in cui nessun client è iscritto, lo scarta; questo avviene quando il retain è \textit{false}. Nel caso di un \textit{retained message} il broker salva inn memoria il pacchetto che ha ricevuto per poi pubblicarlo una volta che un client si sottoscrive al topic.
 
 \end{large}
 
