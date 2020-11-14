@@ -5,3 +5,5 @@
 \BOOKMARK [2][-]{subsection.2.1.2}{Connessione al broker}{section.2.1}% 5
 \BOOKMARK [2][-]{subsection.2.1.3}{Sottoscrizione e pubblicazione}{section.2.1}% 6
 \BOOKMARK [2][-]{subsection.2.1.4}{Altre caratteristiche}{section.2.1}% 7
+\BOOKMARK [0][-]{chapter.3}{Implementazione ed esperimenti}{}% 8
+\BOOKMARK [1][-]{section.3.1}{La libreria client}{chapter.3}% 9

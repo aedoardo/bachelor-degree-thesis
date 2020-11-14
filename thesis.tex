@@ -17,6 +17,10 @@
 \usepackage{setspace}
 \onehalfspacing
 
+%code related
+\usepackage{pythonhighlight}
+
+
 \definecolor{gray}{gray}{0.4}
 \newcommand{\bs}{\textbackslash}
 
@@ -72,7 +76,7 @@
 \begin{large}
 Negli ultimi decenni il numero di dispositivi collegati ad Internet è cresciuto esponenzialmente. Ormai, nel 2020, non si hanno più solamente computer o cellulari in rete ma anche elettrodomestici, macchine industriali e strumenti medici, tutti dispositivi che qualche anno fa erano offline. Tutto ciò fa riferimento all'IoT, l'\textit{Internet of Things}. \\
 Parallelamente allo sviluppo di queste nuove tecnologie, sono stati studiati nuovi protocolli affinché i dispositivi potessero essere utilizzati in maniera efficiente. Ad esempio ci sono alcuni sensori i quali permettono di misurare temperatura ed umidità di una stanza e funzionano attraverso l'uso di una semplice pila; dunque è necessario andare a ridurre il costo energetico della connessione così da aumentare la durata di utilizzo del dispositivo. \\
-Alcuni esempi di protocolli possono essere: MQTT, CoAP, AMQP e WebSocket. Ovviamente tutti i protocolli hanno la possibilità di essere integrati con TLS (\textit{Transport Layer Security}) così da poter garantire una maggiore sicurezza nello scambio dei dati; questo, però, potrebbe andare a gravare sui consumi del dispositivo poiché dovrebbero essere effettuati più calcoli affinché avvenga il trasporto dei dati. Inoltre, con l'aumento di questi nuovi dispositivi sono aumentate anche le possibili minacce relative all'IoT. Un esempio è il malware Mirai che, nel 2016, ha infettato milioni di dispositivi rendendoli parte di una botnet la quale, successivamente, ha attaccato attraverso un DDoS il fornitore di servizi DNS Dyn così da rendere inaccessibili milioni di siti web. A causa, anche, di questa tipologia d'attacco, sempre più comune, i protocolli sviluppati devono presentarsi sicuri e robusti.\\
+Alcuni esempi di protocolli possono essere: MQTT, CoAP, AMQP e WebSocket. Ovviamente tutti i protocolli hanno la possibilità di essere integrati con TLS (\textit{Transport Layer Security}) così da poter garantire una maggiore sicurezza nello scambio dei dati; questo, però, potrebbe andare a gravare sui consumi del dispositivo poiché dovrebbero essere effettuati più calcoli affinché avvenga il trasporto dei dati. Inoltre, con l'aumento di questi nuovi dispositivi sono aumentate anche le possibili minacce relative all'IoT. Un esempio è il malware Mirai \cite{wiki:Mirai} che, nel 2016, ha infettato milioni di dispositivi rendendoli parte di una botnet la quale, successivamente, ha attaccato attraverso un DDoS il fornitore di servizi DNS Dyn così da rendere inaccessibili milioni di siti web. A causa, anche, di questa tipologia d'attacco, sempre più comune, i protocolli sviluppati devono presentarsi sicuri e robusti.\\
 
 In questa relazione viene descritto lo studio effettuato su uno dei maggiori protocolli nell'IoT: MQTT. Nello specifico durante l'attività di tirocinio siamo andati alla ricerca di possibili anomalie e/o violazioni del protocollo da parte dei broker server i quali dovrebbero rispettare ogni standard definito per MQTT.
 
@@ -297,16 +301,81 @@ Dopo aver ricevuto il pacchetto il broker processa il messaggio in base al QoS; 
 
 \subsection{Altre caratteristiche}
 \subsubsection{Retained message}
-Un \textit{retained message} è semplicemente un pacchetto che ha impostato il valore true della \textit{retainFlag}. Di solito il broker una volta che riceve un messaggio da pubblicare su un topic, in cui nessun client è iscritto, lo scarta; questo avviene quando il retain è \textit{false}. Nel caso di un \textit{retained message} il broker salva inn memoria il pacchetto che ha ricevuto per poi pubblicarlo una volta che un client si sottoscrive al topic.
+Un \textit{retained message} è semplicemente un pacchetto che ha impostato il valore true della \textit{retainFlag}. Di solito il broker una volta che riceve un messaggio da pubblicare su un topic, in cui nessun client è iscritto, lo scarta; questo avviene quando il retain è \textit{false}. Nel caso di un \textit{retained message} il broker salva in memoria il pacchetto che ha ricevuto per poi pubblicarlo una volta che un client si sottoscrive al topic.
 
+\subsubsection{Last and will testament}
+Questo meccanismo, indicato anche con \textit{LWT}, ci permette di gestire meglio le disconnessioni improvvise da parte di un client. Quando il dispositivo si connette al broker, nel pacchetto connect (Tabella \ref{tab:connect}), viene specificato il payload nel caso in cui avvenga una disconnessione imprevista; questo payload viene salvato dal broker il quale lo utilizzerà in caso di imprevisto.
+
+\subsubsection{Clean session o persisted session}
+Questa funzionalità viene specificata dal client nel momento della connessione; infatti nel pacchetto \textit{connect} (Tabelle \ref{tab:connect}) viene specificata una variabile \textit{cleanSession}. Nel caso di una persisted session il client riceverà dal broker tutti i messaggi pubblicati sui topic a cui si era sottoscritto che sono stati inviati mentre era offline.
 \end{large}
 
+\chapter{Implementazione ed esperimenti}
+\begin{large}
+Per ricercare possibili anomalie prodotte dalle librerie broker MQTT, c'è stata la necessità di implementare una libreria client la quale potesse permettere di gestire a basso livello i pacchetti e il loro flusso; infatti le librerie come \textit{paho} per python e \textit{mqtt.js} per nodejs non permettono di lavorare a basso livello.
+
+\section{La libreria client}
+La libreria client è stata scritta in python e utilizza la libreria \textit{twisted} \cite{wiki:Twisted}. 
+Sono stati implementati tutti i pacchetti che MQTT mette a disposizione, inclusi tutti i livelli QoS. \\
+Un esempio di pacchetto costruito è quello publish; i vari campi sono descritti nella Tabella \ref{tab:publish}, qui possiamo vedere il \textit{fixed header} del pacchetto.
+
+\begin{table}[h]
+\caption{Fixed header publish packet.}
+\label{tab:publishbytes}
+\centering
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{bit}     & 7 & 6 & 5 & 4 & 3   & 2 & 1 & 0       \\
+\hline
+\textbf{byte 1}  & \multicolumn{4}{|c|}{Packet} & Dup & \multicolumn{2}{|c|}{QoS level} & Retain  \\
+\hline
+        & 0 & 0 & 1 & 1 & x   & \multicolumn{2}{|c|}{x} & x \\
+\hline
+\textbf{byte 2}~ & \multicolumn{8}{|c|}{Remaining Length}                                                       \\
+\hline
+\end{tabular}
+\end{table}
+
+Oltre a questo header, abbiamo il \textit{variable header} che contiene il nome del topic a cui si sta pubblicando e l'id del pacchetto. Infine c'è campo per il \textit{payload}, ovvero il contenuto del messaggio da pubblicare.
+\newpage
+
+Il codice python per la gestione di questo pacchetto è il seguente:
+
+\begin{python}
+def publish(self, topic, message, dup=False, qos=0, retain=False, messageId=None):
+    header = bytearray()
+    varHeader = bytearray()
+    payload = bytearray()
+    
+    header.append(0x03 << 4 | dup << 3 | qos << 1 | retain)
+    varHeader.extend(_encodeString(topic.encode("utf-8")))
+    
+    if qos > 0:
+    	if messageId is None:
+    		varHeader.extend(_encodeValue(random.randing(1, 65535)))
+    	else:
+    		varHeader.extend(_encodeValue(messageId))
+    
+    payload.extend(_encodeString(message.encode("utf-8")))
+    header.extend(_encodeLength(len(varHeader) + len(payload)))
+    
+    self.transport.write(header)
+    self.transport.write(varHeader)
+    self.transport.write(payload)
+\end{python}
+
+Come si può vedere, il codice rispecchia la costruzione del pacchetto come definito nell'OASIS standard \cite{oasis:publish}. Innanzitutto vengono definiti i tre differenti campi: header (fixed header), varHeader (variable header) e infine payload. Si può notare come il messageId, che è l'identificatore del pacchetto, venga utilizzato solamente nel caso in cui il qos sia diverso da 0; in questo caso, infatti, dopo il publish dovrebbe esserci un ulteriore scambio di pacchetti tra broker e client che coinvolge l'id del pacchetto. \\
+Infine viene aggiunto il payload, codificato in utf-8, e viene esteso il fixed header aggiungendo la lunghezza totale tra varHeader e payload. Il trasporto vero e proprio del pacchetto dal client al broker, invece, è gestito grazie alla libreria twisted attraverso il metodo \textit{write}. \\
+
+In maniera del tutto analoga sono stati implementati tutti gli altri pacchetti. Attraverso questa libreria client si ha accesso alla costruzione del pacchetto, cosa non possibile nelle librerie come paho; ciò ha permesso di creare dei test particolari che hanno dato risultati differenti in base al broker utilizzato.
+
+\end{large}
 
 
 % bibliography
 %\cleardoublepage
 %\phantomsection
-%\bibliographystyle{sapthesis} % BibTeX style
-%\bibliography{bibliography} % BibTeX database without .bib extension
+\bibliographystyle{sapthesis} % BibTeX style
+\bibliography{bibliography} % BibTeX database without .bib extension
 
 \end{document}

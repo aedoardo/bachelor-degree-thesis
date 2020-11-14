@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{oasis:publish}
+\textsc{Open, O.}
+\newblock {OASIS Open}.
+\newblock
+  \url{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Table_3.3_-}
+  (2020).
+
+\bibitem{wiki:Mirai}
+\textsc{Wikipedia}.
+\newblock {Mirai (malware)} --- {W}ikipedia{,} the free encyclopedia.
+\newblock \url{http://en.wikipedia.org/w/index.php?title=Mirai\%20(malware)}
+  (2020).
+
+\bibitem{wiki:Twisted}
+\textsc{Wikipedia}.
+\newblock {Twisted (software)} --- {W}ikipedia{,} the free encyclopedia.
+\newblock \url{http://en.wikipedia.org/w/index.php?title=Twisted\%20(software)}
+  (2020).
+
+\end{thebibliography}

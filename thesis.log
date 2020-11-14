@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  13 NOV 2020 12:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  14 NOV 2020 12:54
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -894,30 +894,77 @@ Package: xfp 2020-05-15 L3 Floating point unit
 )
 (E:\latex\tex/latex/setspace\setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (thesis.aux
+)
+(E:\latex\tex/latex/pythonhighlight\pythonhighlight.sty
+Package: pythonhighlight 2017/02/09 python code highlighting; provided by Olivi
+er Verdier <olivier.verdier@gmail.com>
+
+(E:\latex\tex/latex/listings\listings.sty
+\lst@mode=\count295
+\lst@gtempboxa=\box48
+\lst@token=\toks34
+\lst@length=\count296
+\lst@currlwidth=\dimen190
+\lst@column=\count297
+\lst@pos=\count298
+\lst@lostspace=\dimen191
+\lst@width=\dimen192
+\lst@newlines=\count299
+\lst@lineno=\count300
+\lst@maxwidth=\dimen193
+
+(E:\latex\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count301
+\lst@skipnumbers=\count302
+\lst@framebox=\box49
+)
+(E:\latex\tex/latex/listings\listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
+(E:\latex\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(E:\latex\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 709.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)) (thesis.aux
 
 LaTeX Warning: Label `tab:subscribe' multiply defined.
 
 )
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 45
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 49
 .
  (E:\latex\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -961,34 +1008,35 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 (E:\latex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count295
-\scratchdimen=\dimen190
-\scratchbox=\box48
-\nofMPsegments=\count296
-\nofMParguments=\count297
-\everyMPshowfont=\toks34
-\MPscratchCnt=\count298
-\MPscratchDim=\dimen191
-\MPnumerator=\count299
-\makeMPintoPDFobject=\count300
-\everyMPtoPDFconversion=\toks35
+\scratchcounter=\count303
+\scratchdimen=\dimen194
+\scratchbox=\box50
+\nofMPsegments=\count304
+\nofMParguments=\count305
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count306
+\MPscratchDim=\dimen195
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
+\everyMPtoPDFconversion=\toks36
 ) (E:\latex\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
-LaTeX Info: Redefining \textsubscript on input line 45.
-LaTeX Info: Redefining \microtypecontext on input line 45.
+LaTeX Info: Redefining \textsubscript on input line 49.
+LaTeX Info: Redefining \microtypecontext on input line 49.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 45.
+LaTeX Info: Redefining \showhyphens on input line 49.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -997,10 +1045,10 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Info: Redefining \it@ocap on input line 45.
-LaTeX Info: Redefining \it@ccap on input line 45.
-\AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring OFF on input line 45.
+LaTeX Info: Redefining \it@ocap on input line 49.
+LaTeX Info: Redefining \it@ccap on input line 49.
+\AtBeginShipoutBox=\box51
+Package hyperref Info: Link coloring OFF on input line 49.
 
 (E:\latex\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1011,18 +1059,19 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (E:\latex\tex/generic/gettitlestring\gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count301
+\c@section@level=\count309
 )
-LaTeX Info: Redefining \ref on input line 45.
-LaTeX Info: Redefining \pageref on input line 45.
-LaTeX Info: Redefining \nameref on input line 45.
+LaTeX Info: Redefining \ref on input line 49.
+LaTeX Info: Redefining \pageref on input line 49.
+LaTeX Info: Redefining \nameref on input line 49.
  (thesis.out)
 (thesis.out)
 \@outlinefile=\write3
 \openout3 = `thesis.out'.
 
+\c@lstlisting=\count310
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 5
-0.
+4.
  (E:\latex\tex/latex/lm\t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1030,13 +1079,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<sapienza-MLred-pos.pdf, id=31, 288.07625pt x 89.33376pt>
+<sapienza-MLred-pos.pdf, id=39, 288.07625pt x 89.33376pt>
 File: sapienza-MLred-pos.pdf Graphic file (type pdf)
 <use sapienza-MLred-pos.pdf>
-Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 50.
+Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 54.
 (pdftex.def)             Requested size: 142.26378pt x 44.11742pt.
 
-Underfull \hbox (badness 5231) in paragraph at lines 50--50
+Underfull \hbox (badness 5231) in paragraph at lines 54--54
 [][]\T1/lmss/m/n/17.28 Analisi del-le pro-ble-ma-ti-che di si-cu-rez-za del
  []
 
@@ -1047,43 +1096,43 @@ Underfull \hbox (badness 5231) in paragraph at lines 50--50
 {C:/Users/Edoardo/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <E:/latex/tex/
 latex/sapthesis/sapienza-MLred-pos.pdf>]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 5
-0.
+4.
  (E:\latex\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 50--50
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
-0.
+4.
 (E:\latex\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-0.
+4.
  (E:\latex\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-50.
+54.
 
 (E:\latex\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-50.
+54.
  (E:\latex\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 50.
+(Font)              <10> on input line 54.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 50.
+(Font)              <7> on input line 54.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 50.
+(Font)              <5> on input line 54.
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--50
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
 
  []
 
@@ -1110,7 +1159,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 ]
 Capitolo 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--76
+Underfull \hbox (badness 10000) in paragraph at lines 77--80
 
  []
 
@@ -1119,123 +1168,156 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--76
 ] [2]
 Capitolo 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
 [3
 
 ]
-<images/connect-connack.png, id=93, 532.99126pt x 101.37875pt>
+<images/connect-connack.png, id=105, 532.99126pt x 101.37875pt>
 File: images/connect-connack.png Graphic file (type png)
 <use images/connect-connack.png>
-Package pdftex.def Info: images/connect-connack.png  used on input line 109.
+Package pdftex.def Info: images/connect-connack.png  used on input line 113.
 (pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
 
-Overfull \hbox (4.69255pt too wide) in paragraph at lines 118--132
+Overfull \hbox (4.69255pt too wide) in paragraph at lines 122--136
 [][] 
  []
 
 
-Overfull \hbox (14.96391pt too wide) in paragraph at lines 138--146
+Overfull \hbox (14.96391pt too wide) in paragraph at lines 142--150
 [][] 
  []
 
 [4 <./images/connect-connack.png>]
-<images/subscribe-suback.png, id=107, 532.99126pt x 101.37875pt>
+<images/subscribe-suback.png, id=119, 532.99126pt x 101.37875pt>
 File: images/subscribe-suback.png Graphic file (type png)
 <use images/subscribe-suback.png>
-Package pdftex.def Info: images/subscribe-suback.png  used on input line 165.
+Package pdftex.def Info: images/subscribe-suback.png  used on input line 169.
 (pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
 
-Overfull \hbox (3.13127pt too wide) in paragraph at lines 176--184
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 180--188
 [][] 
  []
 
 [5 <./images/subscribe-suback.png>]
-Overfull \hbox (3.13127pt too wide) in paragraph at lines 189--197
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 193--201
 [][] 
  []
 
 
-Overfull \hbox (3.13127pt too wide) in paragraph at lines 211--219
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 215--223
 [][] 
  []
 
-<images/publish-qos0.png, id=118, 532.99126pt x 101.37875pt>
+<images/publish-qos0.png, id=130, 532.99126pt x 101.37875pt>
 File: images/publish-qos0.png Graphic file (type png)
 <use images/publish-qos0.png>
-Package pdftex.def Info: images/publish-qos0.png  used on input line 228.
+Package pdftex.def Info: images/publish-qos0.png  used on input line 232.
 (pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
 [6]
-<images/publish-qos1.png, id=131, 532.99126pt x 101.37875pt>
+<images/publish-qos1.png, id=143, 532.99126pt x 101.37875pt>
 File: images/publish-qos1.png Graphic file (type png)
 <use images/publish-qos1.png>
-Package pdftex.def Info: images/publish-qos1.png  used on input line 236.
+Package pdftex.def Info: images/publish-qos1.png  used on input line 240.
 (pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
 
-Overfull \hbox (3.13127pt too wide) in paragraph at lines 246--253
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 250--257
 [][] 
  []
 
-<images/publish-qos2.png, id=133, 532.99126pt x 101.37875pt>
+<images/publish-qos2.png, id=145, 532.99126pt x 101.37875pt>
 File: images/publish-qos2.png Graphic file (type png)
 <use images/publish-qos2.png>
-Package pdftex.def Info: images/publish-qos2.png  used on input line 261.
+Package pdftex.def Info: images/publish-qos2.png  used on input line 265.
 (pdftex.def)             Requested size: 277.19879pt x 52.72652pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--269
+Underfull \hbox (badness 10000) in paragraph at lines 270--273
 
  []
 
 [7 <./images/publish-qos0.png> <./images/publish-qos1.png>]
-Overfull \hbox (3.13127pt too wide) in paragraph at lines 275--287
+Overfull \hbox (3.13127pt too wide) in paragraph at lines 279--291
 [][] 
  []
 
-<images/publish-flow-example.png, id=147, 482.80376pt x 272.01625pt>
+<images/publish-flow-example.png, id=159, 482.80376pt x 272.01625pt>
 File: images/publish-flow-example.png Graphic file (type png)
 <use images/publish-flow-example.png>
 Package pdftex.def Info: images/publish-flow-example.png  used on input line 29
-3.
+7.
 (pdftex.def)             Requested size: 277.19879pt x 156.17984pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8 <./images/publish-qos2.png> <./images/publish-flow-example.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 312.
- [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 312.
+ [8 <./images/publish-qos2.png> <./images/publish-flow-example.png>] [9] [10
+
+]
+Capitolo 3.
+[11] (E:\latex\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
+44.
+
+(E:\latex\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 345.
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--369
+
+ []
+
+(thesis.bbl [12]
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 381.
+ [13
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 381.
  (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 312.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 312.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 381.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 381.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 4F9C04E6B4E1B36C1DFA632069FDEE40;447.
+(rerunfilecheck)             Checksum: 58267C8018D348F23D1272043AD6FEFF;576.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 12457 strings out of 480790
- 196902 string characters out of 2914071
- 692045 words of memory out of 3000000
- 28038 multiletter control sequences out of 15000+200000
- 613976 words of font info for 114 fonts, out of 3000000 for 9000
+ 15033 strings out of 480790
+ 229218 string characters out of 2914071
+ 919043 words of memory out of 3000000
+ 30522 multiletter control sequences out of 15000+200000
+ 619053 words of font info for 129 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,11n,101p,957b,544s stack positions out of 5000i,500n,10000p,200000b,50000s
-{E:/latex/fonts/enc/dvips/lm/lm-ts1.enc}{E:/latex/fonts/enc/dvips/lm/lm-ec.en
+ 63i,11n,101p,975b,1780s stack positions out of 5000i,500n,10000p,200000b,50000s
+{E:/latex/fonts/enc/dvips/lm/lm-ec.enc}{E:/latex/fonts/enc/dvips/lm/lm-ts1.en
 c}<E:/latex/fonts/type1/public/lm/lmbx10.pfb><E:/latex/fonts/type1/public/lm/lm
-bx12.pfb><E:/latex/fonts/type1/public/lm/lmr10.pfb><E:/latex/fonts/type1/public
-/lm/lmr12.pfb><E:/latex/fonts/type1/public/lm/lmr7.pfb><E:/latex/fonts/type1/pu
-blic/lm/lmri10.pfb><E:/latex/fonts/type1/public/lm/lmri12.pfb><E:/latex/fonts/t
-ype1/public/lm/lmss10.pfb><E:/latex/fonts/type1/public/lm/lmss17.pfb>
-Output written on thesis.pdf (15 pages, 307515 bytes).
+bx12.pfb><E:/latex/fonts/type1/public/lm/lmcsc10.pfb><E:/latex/fonts/type1/publ
+ic/lm/lmr10.pfb><E:/latex/fonts/type1/public/lm/lmr12.pfb><E:/latex/fonts/type1
+/public/lm/lmr7.pfb><E:/latex/fonts/type1/public/lm/lmri10.pfb><E:/latex/fonts/
+type1/public/lm/lmri12.pfb><E:/latex/fonts/type1/public/lm/lmss10.pfb><E:/latex
+/fonts/type1/public/lm/lmss17.pfb><E:/latex/fonts/type1/public/lm/lmtk10.pfb><E
+:/latex/fonts/type1/public/lm/lmtt10.pfb><E:/latex/fonts/type1/public/lm/lmtt9.
+pfb>
+Output written on thesis.pdf (19 pages, 428314 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 47 named destinations out of 1000 (max. 500000)
- 25180 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 297 PDF objects out of 1000 (max. 8388607)
+ 81 named destinations out of 1000 (max. 500000)
+ 29292 words of extra memory for PDF output out of 29859 (max. 10000000)
 
