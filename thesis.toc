@@ -1,16 +1,22 @@
 \babel@toc {italian}{}
 \babel@toc {italian}{}
 \contentsline {chapter}{\numberline {1}Introduzione}{1}{chapter.1}%
-\contentsline {chapter}{\numberline {2}MQTT}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Descrizione del protocollo}{3}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Topic}{3}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Connessione al broker}{4}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Sottoscrizione e pubblicazione}{5}{subsection.2.1.3}%
-\contentsline {subsubsection}{Subscribe}{5}{section*.5}%
-\contentsline {subsubsection}{Publish}{6}{section*.10}%
-\contentsline {subsection}{\numberline {2.1.4}Altre caratteristiche}{9}{subsection.2.1.4}%
-\contentsline {subsubsection}{Retained message}{9}{section*.17}%
-\contentsline {subsubsection}{Last and will testament}{9}{section*.18}%
-\contentsline {subsubsection}{Clean session o persisted session}{9}{section*.19}%
-\contentsline {chapter}{\numberline {3}Implementazione ed esperimenti}{11}{chapter.3}%
-\contentsline {section}{\numberline {3.1}La libreria client}{11}{section.3.1}%
+\contentsline {chapter}{\numberline {2}MQTT}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Descrizione del protocollo}{5}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Topic}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Connessione al broker}{6}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Sottoscrizione e pubblicazione}{7}{subsection.2.1.3}%
+\contentsline {subsubsection}{Subscribe}{7}{section*.8}%
+\contentsline {subsubsection}{Publish}{8}{section*.13}%
+\contentsline {subsection}{\numberline {2.1.4}Altre caratteristiche}{11}{subsection.2.1.4}%
+\contentsline {subsubsection}{Retained message}{11}{section*.20}%
+\contentsline {subsubsection}{Last and will testament}{11}{section*.21}%
+\contentsline {subsubsection}{Clean session o persisted session}{11}{section*.22}%
+\contentsline {chapter}{\numberline {3}Implementazione ed esperimenti}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}La libreria client}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}I broker studiati}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Mosquitto}{15}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}EMQ X}{16}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}HiveMQ Community Edition}{16}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Moquette}{16}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Aedes}{16}{subsection.3.2.5}%

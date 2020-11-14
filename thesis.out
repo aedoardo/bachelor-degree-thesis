@@ -7,3 +7,9 @@
 \BOOKMARK [2][-]{subsection.2.1.4}{Altre caratteristiche}{section.2.1}% 7
 \BOOKMARK [0][-]{chapter.3}{Implementazione ed esperimenti}{}% 8
 \BOOKMARK [1][-]{section.3.1}{La libreria client}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.2}{I broker studiati}{chapter.3}% 10
+\BOOKMARK [2][-]{subsection.3.2.1}{Mosquitto}{section.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.2.2}{EMQ X}{section.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.2.3}{HiveMQ Community Edition}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.4}{Moquette}{section.3.2}% 14
+\BOOKMARK [2][-]{subsection.3.2.5}{Aedes}{section.3.2}% 15

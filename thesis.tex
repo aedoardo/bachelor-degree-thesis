@@ -78,7 +78,38 @@ Negli ultimi decenni il numero di dispositivi collegati ad Internet è cresciuto
 Parallelamente allo sviluppo di queste nuove tecnologie, sono stati studiati nuovi protocolli affinché i dispositivi potessero essere utilizzati in maniera efficiente. Ad esempio ci sono alcuni sensori i quali permettono di misurare temperatura ed umidità di una stanza e funzionano attraverso l'uso di una semplice pila; dunque è necessario andare a ridurre il costo energetico della connessione così da aumentare la durata di utilizzo del dispositivo. \\
 Alcuni esempi di protocolli possono essere: MQTT, CoAP, AMQP e WebSocket. Ovviamente tutti i protocolli hanno la possibilità di essere integrati con TLS (\textit{Transport Layer Security}) così da poter garantire una maggiore sicurezza nello scambio dei dati; questo, però, potrebbe andare a gravare sui consumi del dispositivo poiché dovrebbero essere effettuati più calcoli affinché avvenga il trasporto dei dati. Inoltre, con l'aumento di questi nuovi dispositivi sono aumentate anche le possibili minacce relative all'IoT. Un esempio è il malware Mirai \cite{wiki:Mirai} che, nel 2016, ha infettato milioni di dispositivi rendendoli parte di una botnet la quale, successivamente, ha attaccato attraverso un DDoS il fornitore di servizi DNS Dyn così da rendere inaccessibili milioni di siti web. A causa, anche, di questa tipologia d'attacco, sempre più comune, i protocolli sviluppati devono presentarsi sicuri e robusti.\\
 
-In questa relazione viene descritto lo studio effettuato su uno dei maggiori protocolli nell'IoT: MQTT. Nello specifico durante l'attività di tirocinio siamo andati alla ricerca di possibili anomalie e/o violazioni del protocollo da parte dei broker server i quali dovrebbero rispettare ogni standard definito per MQTT.
+Negli ultimi anni l'utilizzo del protocollo MQTT è sicuramente cresciuto di gran misura.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{images/mqtt-2018numbers.jpg}
+\caption{Numero dispositivi MQTT 2018.}
+\label{fig:mqtt2018}
+\end{figure}
+
+La \autoref{fig:mqtt2018} rappresenta il numero di dispositivi che una ricerca della parola "MQTT" produceva nel 2018 sul sito Shodan \cite{articleAvast}.
+Se effettuiamo la stessa ricerca adesso, abbiamo un numero maggiore come si vede dalla figura sottostante.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{images/mqtt-2020numbers.png}
+\caption{Numero dispositivi MQTT 2020.}
+\label{fig:mqtt2020}
+\end{figure}
+
+La maggior parte di questi dispositivi girano sulla porta standard di MQTT, la 1883; inoltre molti di questi non richiedono alcuna autenticazione per poter connettersi. Effettuando una ricerca ancora più specifica attraverso la stringa "\textit{port:1883}", abbiamo ancora più risultati come si vede dalla \autoref{fig:mqttport2020}.\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{images/mqtt-2020port.png}
+\caption{Numero dispositivi MQTT 2020, port:1883.}
+\label{fig:mqttport2020}
+\end{figure}
+
+In questa relazione viene descritto lo studio effettuato su uno dei maggiori protocolli nell'IoT: MQTT. Nello specifico durante l'attività di tirocinio siamo andati alla ricerca di possibili anomalie e/o violazioni del protocollo da parte dei broker server i quali dovrebbero rispettare ogni standard definito per MQTT. \\
+
+Nel \textbf{Capitolo 2} sarà analizzato il protocollo nel dettaglio assieme alle sue principali caratteristiche e funzionalità. \\
+
+Nel \textbf{Capitolo 3} viene analizzata la libreria che è stata scritta ai fini del tirocinio. In questo capitolo sono anche descritti i differenti broker su cui sono stati effettuati i test e vengono riportati i risultati più interessanti.
 
 \end{large}
 
@@ -115,7 +146,7 @@ Come scritto nell'introduzione di questo capitolo, la connessione avviene solame
 \label{fig:connect-connack}
 \end{figure}
 
-Come si può vedere dalla Figura \ref{fig:connect-connack}, la connessione avviene tramite lo scambio di due pacchetti: \textit{connect}, inviato dal client al broker, e \textit{connack} inviato dal broker al client. Il pacchetto connect è così strutturato:
+Come si può vedere dalla \autoref{fig:connect-connack}, la connessione avviene tramite lo scambio di due pacchetti: \textit{connect}, inviato dal client al broker, e \textit{connack} inviato dal broker al client. Il pacchetto connect è così strutturato:
 \begin{table}[h]
 \caption{Struttura pacchetto connect.}
 \label{tab:connect}
@@ -149,7 +180,7 @@ Il pacchetto connack, invece, è così strutturato: \\
 \end{tabular}
 \end{table}
 
-Per quanto riguarda il \textit{returnCode} descritto nella Tabella \ref{tab:connack}, questo è un valore che va da 0 a 5:
+Per quanto riguarda il \textit{returnCode} descritto nella \autoref{tab:connack}, questo è un valore che va da 0 a 5:
 \begin{itemize}
 \item 0: connessione accettata;
 \item 1: connessione rifiutata, versione del protocollo non valida;
@@ -171,7 +202,7 @@ L'azione subscribe permette al client di sottoscriversi a un determinato topic p
 \label{fig:subscribe-suback}
 \end{figure}
 
-Come si nota dalla figura \ref{fig:subscribe-suback}, la sottoscrizione avviene semplicemente con lo scambio di due pacchetti: \textit{subscribe}, dal client al broker, e \textit{suback}, dal broker al client. Il primo pacchetto rappresenta la richiesta di sottoscrizione ad un determinato topic, il secondo invece conferma la sottoscrizione a quel topic. \\
+Come si nota dalla \autoref{fig:subscribe-suback}, la sottoscrizione avviene semplicemente con lo scambio di due pacchetti: \textit{subscribe}, dal client al broker, e \textit{suback}, dal broker al client. Il primo pacchetto rappresenta la richiesta di sottoscrizione ad un determinato topic, il secondo invece conferma la sottoscrizione a quel topic. \\
 La struttura del subscribe packet è la seguente:
 
 \begin{table}[h]
@@ -242,7 +273,7 @@ Nel caso del Quality of Service di livello 1 viene garantita la pubblicazione ad
 \label{fig:qos-1pub}
 \end{figure}
 
-Come si vede dalla Figura \ref{fig:qos-1pub}, il client riceve dal broker il pacchetto \textit{puback} solo dopo aver pubblicato il pacchetto publish. 
+Come si vede dalla \autoref{fig:qos-1pub}, il client riceve dal broker il pacchetto \textit{puback} solo dopo aver pubblicato il pacchetto publish. 
 Il pacchetto puback è così strutturato:
 \begin{table}[h]
 \caption{Struttura pacchetto puback.}
@@ -267,9 +298,9 @@ Infine abbiamo il QoS di livello 2 il quale dà maggiore affidabilità ma è pi�
 \label{fig:qos-2pub}
 \end{figure}
 
-Come si vede dalla Figura \ref{fig:qos-2pub} abbiamo più messaggi scambiati fra client e broker. Questo meccanismo assicura che il messaggio sia ricevuto solamente una volta dai destinatari; il livello 2, perciò, dà un maggiore livello di sicurezza al client.
+Come si vede dalla \autoref{fig:qos-2pub} abbiamo più messaggi scambiati fra client e broker. Questo meccanismo assicura che il messaggio sia ricevuto solamente una volta dai destinatari; il livello 2, perciò, dà un maggiore livello di sicurezza al client.
 Nel caso in cui il pacchetto vada perso, dopo un certo intervallo di tempo il client trasmetterà nuovamente il pacchetto e resterà in attesa della risposta da parte del broker. \\
-La struttura dei pacchetti è la stessa che si può vedere nella Tabella \ref{tab:puback}. \\
+La struttura dei pacchetti è la stessa che si può vedere nella \autoref{tab:puback}. \\
 
 Adesso che sono stati analizzati i differenti QoS, si può analizzare nel dettaglio il publish, il pacchetto più complicato del protocollo.
 Il pacchetto ha i seguenti campi:
@@ -304,10 +335,10 @@ Dopo aver ricevuto il pacchetto il broker processa il messaggio in base al QoS; 
 Un \textit{retained message} è semplicemente un pacchetto che ha impostato il valore true della \textit{retainFlag}. Di solito il broker una volta che riceve un messaggio da pubblicare su un topic, in cui nessun client è iscritto, lo scarta; questo avviene quando il retain è \textit{false}. Nel caso di un \textit{retained message} il broker salva in memoria il pacchetto che ha ricevuto per poi pubblicarlo una volta che un client si sottoscrive al topic.
 
 \subsubsection{Last and will testament}
-Questo meccanismo, indicato anche con \textit{LWT}, ci permette di gestire meglio le disconnessioni improvvise da parte di un client. Quando il dispositivo si connette al broker, nel pacchetto connect (Tabella \ref{tab:connect}), viene specificato il payload nel caso in cui avvenga una disconnessione imprevista; questo payload viene salvato dal broker il quale lo utilizzerà in caso di imprevisto.
+Questo meccanismo, indicato anche con \textit{LWT}, ci permette di gestire meglio le disconnessioni improvvise da parte di un client. Quando il dispositivo si connette al broker, nel pacchetto connect (\autoref{tab:connect}), viene specificato il payload nel caso in cui avvenga una disconnessione imprevista; questo payload viene salvato dal broker il quale lo utilizzerà in caso di imprevisto.
 
 \subsubsection{Clean session o persisted session}
-Questa funzionalità viene specificata dal client nel momento della connessione; infatti nel pacchetto \textit{connect} (Tabelle \ref{tab:connect}) viene specificata una variabile \textit{cleanSession}. Nel caso di una persisted session il client riceverà dal broker tutti i messaggi pubblicati sui topic a cui si era sottoscritto che sono stati inviati mentre era offline.
+Questa funzionalità viene specificata dal client nel momento della connessione; infatti nel pacchetto \textit{connect} (\autoref{tab:connect}) viene specificata una variabile \textit{cleanSession}. Nel caso di una persisted session il client riceverà dal broker tutti i messaggi pubblicati sui topic a cui si era sottoscritto che sono stati inviati mentre era offline.
 \end{large}
 
 \chapter{Implementazione ed esperimenti}
@@ -317,7 +348,7 @@ Per ricercare possibili anomalie prodotte dalle librerie broker MQTT, c'è stata
 \section{La libreria client}
 La libreria client è stata scritta in python e utilizza la libreria \textit{twisted} \cite{wiki:Twisted}. 
 Sono stati implementati tutti i pacchetti che MQTT mette a disposizione, inclusi tutti i livelli QoS. \\
-Un esempio di pacchetto costruito è quello publish; i vari campi sono descritti nella Tabella \ref{tab:publish}, qui possiamo vedere il \textit{fixed header} del pacchetto.
+Un esempio di pacchetto costruito è quello publish; i vari campi sono descritti nella \autoref{tab:publish}, qui possiamo vedere il \textit{fixed header} del pacchetto.
 
 \begin{table}[h]
 \caption{Fixed header publish packet.}
@@ -367,7 +398,52 @@ def publish(self, topic, message, dup=False, qos=0, retain=False, messageId=None
 Come si può vedere, il codice rispecchia la costruzione del pacchetto come definito nell'OASIS standard \cite{oasis:publish}. Innanzitutto vengono definiti i tre differenti campi: header (fixed header), varHeader (variable header) e infine payload. Si può notare come il messageId, che è l'identificatore del pacchetto, venga utilizzato solamente nel caso in cui il qos sia diverso da 0; in questo caso, infatti, dopo il publish dovrebbe esserci un ulteriore scambio di pacchetti tra broker e client che coinvolge l'id del pacchetto. \\
 Infine viene aggiunto il payload, codificato in utf-8, e viene esteso il fixed header aggiungendo la lunghezza totale tra varHeader e payload. Il trasporto vero e proprio del pacchetto dal client al broker, invece, è gestito grazie alla libreria twisted attraverso il metodo \textit{write}. \\
 
-In maniera del tutto analoga sono stati implementati tutti gli altri pacchetti. Attraverso questa libreria client si ha accesso alla costruzione del pacchetto, cosa non possibile nelle librerie come paho; ciò ha permesso di creare dei test particolari che hanno dato risultati differenti in base al broker utilizzato.
+In maniera del tutto analoga sono stati implementati tutti gli altri pacchetti. Attraverso questa libreria client si ha accesso alla costruzione del pacchetto, cosa non possibile nelle librerie come paho; ciò ha permesso di creare dei test particolari che hanno dato risultati differenti in base al broker utilizzato. \\
+
+Per facilitare l'esecuzione dei test da eseguire, si è creato il programma in modo che potesse prendere dei file \textit{json} i quali contenevano il flusso che la libreria doveva seguire. Questo ha permesso di poter studiare in maniera più dettagliata i diversi comportamenti da parte dei server. \\
+Un esempio di test è il seguente:
+\begin{python}
+[   
+    {
+       "type": "subscribe",
+       "params": {
+           "topic": "test/topic"
+       }     
+    },
+
+    {
+        "type": "publish",
+        "params": {
+            "topic": "test/topic",
+            "message": "pacchetto \#1",
+            "qos": 0,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    }
+]
+\end{python}
+In questo caso la libreria client gestiva due pacchetti: il primo di tipo subscribe al topic \textit{test/topic}, il secondo, invece, di tipo publish al topic \textit{test/topic} con QoS 0 e packetId 1. Ovviamente prima veniva inviato il pacchetto di tipo subscribe e solo successivamente quello di tipo publish.
+
+\section{I broker studiati}
+Sono stati presi come caso di studio differenti broker, che saranno introdotti molto brevemente in questa sezione. Ricapitolando, il broker ha la funzionalità di filtrare i messaggi che riceve dai differenti client e successivamente inviarli ai destinatari.
+
+\subsection{Mosquitto}
+Mosquitto \cite{Light2017} è uno fra i broker più famosi ed utilizzati per quanto riguarda MQTT. È leggero, open source e si adatta molto bene sia con dispositivi di poco consumo che con normali server. Supporta tutte le versioni del protocollo.
+
+\subsection{EMQ X}
+Anche EMQ X è un broker molto utilizzato. È scritto in \textit{Erlang} ed è open source; permette di gestire milioni di connessioni simultanee anche con un unico server. Oltre a supportare MQTT, supporta anche CoAP, MQTT-SN (\textit{MQTT for Sensors Networks}) e LwM2M.
+
+\subsection{HiveMQ Community Edition}
+\textit{HiveMQ Community Edition} è un altro broker scritto in Java ed open source.
+Supporta MQTT a partire dalla versione 3.x fino all'ultima rilasciata che è MQTT 5. È molto utilizzato anche nei sistemi di automazione e in macchinari industriali che necessitano di un sistema real-time.
+
+\subsection{Moquette}
+Moquette \cite{Moquette} è un broker meno conosciuto scritto in java e open source. Supporta tutti i livelli di QoS e tutte le versioni del protocollo.
+
+\subsection{Aedes}
+Aedes \cite{Aedes} è un broker non troppo conosciuto scritto in NodeJS. Non supporta l'ultima versione di MQTT, ma è pienamente compatibile con la versione 3.1 e la 3.1.1. Ha molte librerie col quale può essere integrato.
 
 \end{large}
 

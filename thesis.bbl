@@ -1,5 +1,28 @@
 \begin{thebibliography}{1}
 
+\bibitem{articleAvast}
+\textsc{Hron, M.}
+\newblock Are smart homes vulnerable to hacking?
+\newblock \url{https://blog.avast.com/mqtt-vulnerabilities-hacking-smart-homes}
+  (2018).
+
+\bibitem{Light2017}
+\textsc{Light, R.~A.}
+\newblock Mosquitto: server and client implementation of the mqtt protocol.
+\newblock \emph{Journal of Open Source Software}, \textbf{2} (2017), 265.
+\newblock Available from: \url{https://doi.org/10.21105/joss.00265}, \href
+  {http://dx.doi.org/10.21105/joss.00265} {\path{doi:10.21105/joss.00265}}.
+
+\bibitem{Moquette}
+\textsc{Moquette}.
+\newblock Moquette.
+\newblock \url{https://github.com/moquette-io/moquette} (2020).
+
+\bibitem{Aedes}
+\textsc{MoscaJS}.
+\newblock Aedes.
+\newblock \url{https://github.com/moscajs/aedes} (2020).
+
 \bibitem{oasis:publish}
 \textsc{Open, O.}
 \newblock {OASIS Open}.
