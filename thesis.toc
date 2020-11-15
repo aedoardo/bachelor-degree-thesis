@@ -20,3 +20,12 @@
 \contentsline {subsection}{\numberline {3.2.3}HiveMQ Community Edition}{16}{subsection.3.2.3}%
 \contentsline {subsection}{\numberline {3.2.4}Moquette}{16}{subsection.3.2.4}%
 \contentsline {subsection}{\numberline {3.2.5}Aedes}{16}{subsection.3.2.5}%
+\contentsline {section}{\numberline {3.3}Esperimenti effetuati}{16}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Publish QoS 2 e 1}{17}{subsection.3.3.1}%
+\contentsline {subsubsection}{Risultati ottenuti}{18}{section*.24}%
+\contentsline {subsection}{\numberline {3.3.2}15000 subscription}{18}{subsection.3.3.2}%
+\contentsline {subsubsection}{Risultati ottenuti}{19}{section*.26}%
+\contentsline {subsection}{\numberline {3.3.3}Topic lungo}{19}{subsection.3.3.3}%
+\contentsline {subsubsection}{Risultati ottenuti}{19}{section*.28}%
+\contentsline {subsection}{\numberline {3.3.4}Publish QoS 2 e 0}{20}{subsection.3.3.4}%
+\contentsline {subsubsection}{Risultati ottenuti}{21}{section*.30}%

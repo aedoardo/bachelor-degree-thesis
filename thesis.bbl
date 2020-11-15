@@ -1,5 +1,12 @@
 \begin{thebibliography}{1}
 
+\bibitem{emqxsource}
+\textsc{EMQX}.
+\newblock Source length topic.
+\newblock
+  \url{https://github.com/emqx/emqx/blob/8e658edb767040f699a42d751b1be1098c31329a/src/emqx_topic.erl}
+  (2020).
+
 \bibitem{articleAvast}
 \textsc{Hron, M.}
 \newblock Are smart homes vulnerable to hacking?

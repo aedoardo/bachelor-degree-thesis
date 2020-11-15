@@ -109,7 +109,7 @@ In questa relazione viene descritto lo studio effettuato su uno dei maggiori pro
 
 Nel \textbf{Capitolo 2} sarà analizzato il protocollo nel dettaglio assieme alle sue principali caratteristiche e funzionalità. \\
 
-Nel \textbf{Capitolo 3} viene analizzata la libreria che è stata scritta ai fini del tirocinio. In questo capitolo sono anche descritti i differenti broker su cui sono stati effettuati i test e vengono riportati i risultati più interessanti.
+Nel \textbf{Capitolo 3} viene analizzata la libreria che è stata scritta ai fini del tirocinio. In questo capitolo sono anche descritti i differenti broker su cui sono stati effettuati i test e vengono riportati i risultati di alcuni.
 
 \end{large}
 
@@ -191,7 +191,7 @@ Per quanto riguarda il \textit{returnCode} descritto nella \autoref{tab:connack}
 \end{itemize}
 
 \subsection{Sottoscrizione e pubblicazione}
-Come scritto più volte, MQTT è un protocollo che adotta un meccanismo chiamato \textit{publisher/subscribe}; perciò due aziono fondamentali che un client può compiere sono quelle chiamate \textit{publish} e \textit{subscribe}.
+Come scritto più volte, MQTT è un protocollo che adotta un meccanismo chiamato \textit{publisher/subscribe}; perciò le due azioni fondamentali che un client può compiere sono \textit{publish} e \textit{subscribe}.
 \subsubsection{Subscribe}
 L'azione subscribe permette al client di sottoscriversi a un determinato topic passato nel pacchetto.
 
@@ -424,7 +424,7 @@ Un esempio di test è il seguente:
     }
 ]
 \end{python}
-In questo caso la libreria client gestiva due pacchetti: il primo di tipo subscribe al topic \textit{test/topic}, il secondo, invece, di tipo publish al topic \textit{test/topic} con QoS 0 e packetId 1. Ovviamente prima veniva inviato il pacchetto di tipo subscribe e solo successivamente quello di tipo publish.
+In questo caso la libreria client gestiva due pacchetti: il primo di tipo subscribe al topic \textit{test/topic}, il secondo, invece, di tipo publish al topic \textit{test/topic} con QoS 0 e packet id 1. Ovviamente prima veniva inviato il pacchetto di tipo subscribe e solo successivamente quello di tipo publish.
 
 \section{I broker studiati}
 Sono stati presi come caso di studio differenti broker, che saranno introdotti molto brevemente in questa sezione. Ricapitolando, il broker ha la funzionalità di filtrare i messaggi che riceve dai differenti client e successivamente inviarli ai destinatari.
@@ -445,8 +445,193 @@ Moquette \cite{Moquette} è un broker meno conosciuto scritto in java e open sou
 \subsection{Aedes}
 Aedes \cite{Aedes} è un broker non troppo conosciuto scritto in NodeJS. Non supporta l'ultima versione di MQTT, ma è pienamente compatibile con la versione 3.1 e la 3.1.1. Ha molte librerie col quale può essere integrato.
 
-\end{large}
+\section{Esperimenti effetuati}
+La tecnica utilizzata per eseguire i test sulle librerie broker è stata simile al \textit{fuzzing}. Di per sé il fuzzing consiste in un'automazione dei test, i quali forniscono al SUT (\textit{software under test}) dati non validi o input inaspettati. Così facendo si può vedere il comportamento del software e si possono analizzare eventuali crash, buffer overflows e memory leaks. \\
 
+I test che sono stati effettuati sulle librerie consistevano in file \textit{json} che vengono passati come input alla libreria client. In queta sezione sono riportati i file di alcuni test e i risultati prodotti che possono rappresentare un'anomalia di gestione da parte del broker.
+
+\newpage
+
+\subsection{Publish QoS 2 e 1}
+
+\begin{python}
+[    
+    {
+       "type": "subscribe",
+       "params": {
+           "topic": "test/topic"
+       }     
+    },
+    {
+        "type": "publish",
+        "params": {
+            "topic": "test/topic",
+            "message": "pacchetto #1",
+            "qos": 2,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "publish",
+        "params": {
+            "topic": "test/topic",
+            "message": "pacchetto #2",
+            "qos": 1,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "pubrel",
+        "params": {
+            "packetId": 1
+        }
+    }
+]
+\end{python}
+In questo test vengono inviati due pacchetti al topic "\textit{test/topic}" con lo stesso id ma differente livello di QoS. Ovviamente, prima di inviarli, la libreria client effettua una sottoscrizione al topic di pubblicazione. \\
+
+\newpage
+\subsubsection{Risultati ottenuti}
+La tabella sottostante riassume i risultati ottenuti dai diversi broker.
+\begin{table}[h]
+\caption{Risultati test pubblicazione QoS 2 e 1.}
+\label{tab:resultsqos2and1}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Broker} & \textbf{Comportamento} \\
+\midrule
+\textit{Mosquitto} & In questo caso il broker pubblicava il primo pacchetto ricevuto, cioè quello di QoS 2. Il secondo pacchetto, invece, viene perso e non viene pubblicato. \\
+\textit{EMQ X} & Diversamente da Mosquitto, il broker effettuava tutto ciò che era relativo al primo pacchetto publish ricevuto; quindi il client riceveva il pubcomp e successivamente la pubblicazione. Infine veniva pubblicato il secondo pacchetto, che quindi non viene perso. \\
+\textit{HiveMQ} & Il comportamento di questo broker è simile a quello di EMQ X; entrambi i pacchetti vengono pubblicati nell'ordine prestabilito, tuttavia, per quanto riguarda il primo, il client riceve la pubblicazione e solo successivamentene il pubcomp. \\
+\textit{Moquette} & Anche in questo caso il broker pubblica il primo pacchetto, pur ricevendo dopo il pubcomp, e successivamente il secondo.\\
+\textit{Aedes} & In questo caso il broker si comporta in maniera leggermente differente dai precedenti. Pur pubblicando entrambi i pacchetti nell'ordine prestabilito, riceve il pubcomp come ultimo pacchetto anche dopo la pubblicazione del secondo. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{15000 subscription}
+In questo test sono stati inviati 15000 pacchetti di tipo subscribe, in un intervallo di tempo molto piccolo, al broker per vedere come si comportasse. La struttura del file \textit{json} è la seguente:
+
+\begin{python}
+[
+	{
+		"type": "subscribe", 
+		"params": {
+			"topic": "random_topic_subscription_5858", 
+			"packetId": 5314
+		}
+	}
+]
+\end{python}
+Il topic e il packet id sono stati generati randomicamente; nel file ci sono, in realtà, 15000 pacchetti di questo tipo. \\
+
+Questo genere di test è volto più a verificare il comportamento del broker nel caso in cui riceva un flood di pacchetti.
+
+\subsubsection{Risultati ottenuti}
+Anche in questo caso i broker si sono comportati in maniera differente e i risultati sono riassunti nella tabella sottostante.
+\begin{table}[h]
+\caption{Risultati test sottoscrizione di 15000 pacchetti.}
+\label{tab:results15ksub}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Broker} & \textbf{Comportamento} \\
+\midrule
+\textit{Mosquitto} & Il client perdeva la connessione dopo aver inviato circa 3800-4000 pacchetti al broker. \\
+\textit{EMQ X} & In questo caso l'invio dei pacchetti non comporta alcuna problematica; infatti tutti i pacchetti sono gestiti correttamente dal broker e il client non perde la connessione. \\
+\textit{HiveMQ} & Come in Mosquitto, il client perdeva la connessione dopo più o meno 4000 pacchetti inviati. \\
+\textit{Moquette} & Anche in questo caso il client perdeva la connessione dopo più o meno 4000 pacchetti inviati.\\
+\textit{Aedes} & Questo broker si è comportato come EMQ X. È riuscito a gestire correttamente tutti i subscribe che sono stati inviati dal client non producendo alcuna disconnessione. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Topic lungo}
+Nello standard di MQTT la lunghezza massima della stringa che rappresenta il topic è di 65536 caratteri. Tuttavia nelle source del broker EMQ X \cite{emqxsource} si può vedere che la lunghezza massima è di soli 4096 caratteri, così è stato testato il subscribe ad un topic lungo 4097 caratteri.
+
+\subsubsection{Risultati ottenuti}
+I risultati sono riassunti nella tabella che segue.
+\begin{table}[h]
+\caption{Risultati test topic lungo 4097 caratteri.}
+\label{tab:resultslongtopic}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Broker} & \textbf{Comportamento} \\
+\midrule
+\textit{Mosquitto} & La sottoscrizione avviene con successo. \\
+\textit{EMQ X} & Disconnessione del client. \\
+\textit{HiveMQ} & Viene tagliato il nome del topic. \\
+\textit{Moquette} & Sottoscrizione avvenuta con successo.\\
+\textit{Aedes} & Disconnessione del client, crash del server. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Come si può vedere dalla \autoref{tab:resultslongtopic}, i broker si comportano differentemente. Si può notare che \textit{Mosquitto} e \textit{Moquette} sembrano accettare senza problemi il topic; \textit{HiveMQ}, invece, effettua un controllo sulla lunghezza del topic e nel caso sia troppo lungo taglia dei caratteri affinché il client non venga disconnesso. \textit{Aedes} sembra addirittura crashare scrivendo nella console \textit{"Too many words"}.
+
+\subsection{Publish QoS 2 e 0}
+\begin{python}
+[   
+    {
+       "type": "subscribe",
+       "params": {
+           "topic": "test/topic"
+       }     
+    },
+    {
+        "type": "publish",
+        "params": {
+            "topic": "test/topic",
+            "message": "pacchetto #1",
+            "qos": 2,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "publish",
+        "params": {
+            "topic": "test/topic",
+            "message": "pacchetto #2",
+            "qos": 0,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "pubrel",
+        "params": {
+            "packetId": 1
+        }
+    }
+]
+\end{python}
+Questo test è identico a quello con QoS 2 e 1, però qui abbiamo il secondo pacchetto inviato con QoS 0. Il test è interessante poiché ha prodotto risultati inaspettati in alcuni casi.
+
+\subsubsection{Risultati ottenuti}
+I risultati ottenuti sono riassunti nella tabella che segue.
+\begin{table}[h]
+\caption{Risultati Publish test QoS 2 e 0.}
+\label{tab:resultslongtopic}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Broker} & \textbf{Comportamento} \\
+\midrule
+\textit{Mosquitto} & Il broker pubblica prima il pacchetto con QoS 0 e successivamente gestisce, correttamente, tutto il flusso per quanto riguarda il primo pacchetto, che ha QoS 2. \\
+\textit{EMQ X} & Diversamente da Mosquitto, EMQ X pubblica gestisce il primo pacchetto inviato e lo pubblica. Successivamente avviene la pubblicazione del pacchetto con QoS 0. \\
+\textit{HiveMQ} & Il broker si comporta esattamente come EMQ X, quindi avviene prima la pubblicazione del pacchetto con QoS 2 e solo successivamente quella con QoS 0. \\
+\textit{Moquette} & Anche in questo caso viene pubblicato prima il pacchetto con QoS 2 e dopo quello con QoS 0. Piccola anomalia: il pubcomp riferito al primo pacchetto arriva al client solo dopo la pubblicazione del secondo pacchetto.\\
+\textit{Aedes} & Il broker si comporta similmente a Mosquitto; infatti viene pubblicato prima il secondo pacchetto, quello con QoS 0, e successivamente quello con QoS 2. Il client, anche in questo caso, sembra ricevere il pubcomp riferito al primo pacchetto dopo la sua pubblicazione. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{large}
 
 % bibliography
 %\cleardoublepage
