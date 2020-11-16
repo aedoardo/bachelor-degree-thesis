@@ -2,7 +2,7 @@
 % !TeX program = pdflatex
 % !TeX spellcheck = it_IT
 
-\documentclass[Lau,binding=0.6cm,noexaminfo=true]{sapthesis}
+\documentclass[binding=0.6cm,TFA]{sapthesis}
 
 \usepackage{microtype}
 \usepackage[italian]{babel}
@@ -28,7 +28,7 @@
 \title{Analisi delle problematiche di sicurezza del protocollo MQTT}
 \author{Edoardo Di Paolo}
 \IDnumber{1728334}
-\course{Informatica}
+\course{Informatica L-31}
 \courseorganizer{Facoltà di Ingegneria dell'informazione, informatica e statistica}
 \AcademicYear{2019/2020}
 \copyyear{2020}
@@ -219,8 +219,8 @@ La struttura del subscribe packet è la seguente:
 \end{table}
 Il pacchetto suback, invece, è così strutturato:
 \begin{table}[h]
-\caption{Struttura pacchetto subscribe.}
-\label{tab:subscribe}
+\caption{Struttura pacchetto suback.}
+\label{tab:suback}
 \begin{tabular}{lp{0.8\textwidth}}
 \toprule
 \textbf{Parametro} & \textbf{Descrizione} \\
@@ -395,7 +395,7 @@ def publish(self, topic, message, dup=False, qos=0, retain=False, messageId=None
     self.transport.write(payload)
 \end{python}
 
-Come si può vedere, il codice rispecchia la costruzione del pacchetto come definito nell'OASIS standard \cite{oasis:publish}. Innanzitutto vengono definiti i tre differenti campi: header (fixed header), varHeader (variable header) e infine payload. Si può notare come il messageId, che è l'identificatore del pacchetto, venga utilizzato solamente nel caso in cui il qos sia diverso da 0; in questo caso, infatti, dopo il publish dovrebbe esserci un ulteriore scambio di pacchetti tra broker e client che coinvolge l'id del pacchetto. \\
+Come si può vedere, il codice rispecchia la costruzione del pacchetto come definito nell'OASIS standard \cite{oasis:publish}. Innanzitutto vengono inizializzati i tre differenti campi: header (fixed header), varHeader (variable header) e infine payload. Si può notare come il messageId, che è l'identificatore del pacchetto, venga utilizzato solamente nel caso in cui il qos sia diverso da 0; in questo caso, infatti, dopo il publish dovrebbe esserci un ulteriore scambio di pacchetti tra broker e client che coinvolge l'id del pacchetto. \\
 Infine viene aggiunto il payload, codificato in utf-8, e viene esteso il fixed header aggiungendo la lunghezza totale tra varHeader e payload. Il trasporto vero e proprio del pacchetto dal client al broker, invece, è gestito grazie alla libreria twisted attraverso il metodo \textit{write}. \\
 
 In maniera del tutto analoga sono stati implementati tutti gli altri pacchetti. Attraverso questa libreria client si ha accesso alla costruzione del pacchetto, cosa non possibile nelle librerie come paho; ciò ha permesso di creare dei test particolari che hanno dato risultati differenti in base al broker utilizzato. \\
@@ -699,7 +699,17 @@ Anche in questo caso i broker hanno prodotto risultati differenti e in alcuni ca
 \end{table}
 
 \subsection{Altri esperimenti}
-Sono stati effettuati altri esperimenti.
+Oltre ai test riportati in questa relazione, ne sono stati effettuati anche altri. Ad esempio, sono stati eseguiti dei test riguardanti la codifica del topic; tutti i broker studiati in questo caso si son comportati bene senza far notare alcuna anomalia. Anche per quanto riguarda il \textit{client id} contenente caratteri non codificati in utf-8 non si son verificati problemi. \\
+
+Ulteriori esperimenti sono riassunti nella lista sottostante assieme ad una breve descrizione del risultato ottenuto:
+
+\begin{itemize}
+\item intervallo del \textit{keepAlive} stringa: in tutti i broker è stata registrata la disconnessione del client a causa del pacchetto di connessione malformato;
+\item sottoscrizione (o pubblicazione) ad un \textit{wildcard} non valido: in tutti i broker è stata registrata la disconnessione del client a causa del topic non valido;
+\item \textit{wildcard} codificato in: \textit{utf-16}, \textit{zzlib}, \textit{bz2} e \textit{base64}. Negli ultimi tre casi, il pacchetto subscribe è stato inviato correttamente e gestito altrettanto dal broker; per quanto riguarda la prima codifica utilizzata, l'utf-16, è sempre avvenuta la disconnessione del client;
+\item flood pacchetti publish QoS 0: tutti i broker hanno gestito correttamente il flood dei pacchetti senza andare in crash;
+\item versione (o nome) del protocollo non validi nel pacchetto di connessione: tutti i broker hanno disconnesso il client;
+\end{itemize}
 
 \end{large}
 
