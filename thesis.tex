@@ -449,7 +449,7 @@ Aedes \cite{Aedes} è un broker non troppo conosciuto scritto in NodeJS. Non sup
 La tecnica utilizzata per eseguire i test sulle librerie broker è stata simile al \textit{fuzzing}. Di per sé il fuzzing consiste in un'automazione dei test, i quali forniscono al SUT (\textit{software under test}) dati non validi o input inaspettati. Così facendo si può vedere il comportamento del software e si possono analizzare eventuali crash, buffer overflows e memory leaks. \\
 
 I test che sono stati effettuati sulle librerie consistevano in file \textit{json} che vengono passati come input alla libreria client. In queta sezione sono riportati i file di alcuni test e i risultati prodotti che possono rappresentare un'anomalia di gestione da parte del broker.
-
+Alcuni test effettuati sono stati creati prendendo spunto da questo articolo \cite{articleTestsMQTT} e i risultati ottenuti sono del tutto simili a quelli descritti nell'articolo.
 \newpage
 
 \subsection{Publish QoS 2 e 1}
@@ -617,7 +617,7 @@ Questo test è identico a quello con QoS 2 e 1, però qui abbiamo il secondo pac
 I risultati ottenuti sono riassunti nella tabella che segue.
 \begin{table}[h]
 \caption{Risultati Publish test QoS 2 e 0.}
-\label{tab:resultslongtopic}
+\label{tab:resultsqos2and0}
 \begin{tabular}{lp{0.8\textwidth}}
 \toprule
 \textbf{Broker} & \textbf{Comportamento} \\
@@ -631,11 +631,81 @@ I risultati ottenuti sono riassunti nella tabella che segue.
 \end{tabular}
 \end{table}
 
+\newpage
+\subsection{Doppio publish QoS 2}
+In questo test vengono inviati due pacchetti di tipo publish con lo stesso QoS e lo stesso id.
+\begin{python}
+[   
+    {
+       "type": "subscribe",
+       "params": {
+           "topic": "test/topic"
+       }     
+    },
+    {
+        "type": "publish",
+        "params": {
+            "topic": "test/topic",
+            "message": "pacchetto #1",
+            "qos": 2,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "publish",
+        "params": {
+            "topic": "test/topic",
+            "message": "pacchetto #2",
+            "qos": 2,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "pubrel",
+        "params": {
+            "packetId": 1
+        }
+    },
+    {
+        "type": "pubrel",
+        "params": {
+            "packetId": 1
+        }
+    }
+]
+\end{python}
+
+\subsubsection{Risultati ottenuti}
+Anche in questo caso i broker hanno prodotto risultati differenti e in alcuni casi anche particolari.
+
+\begin{table}[h]
+\caption{Risultati Publish test doppio QoS 2.}
+\label{tab:resultsdoubleqos2}
+\begin{tabular}{lp{0.8\textwidth}}
+\toprule
+\textbf{Broker} & \textbf{Comportamento} \\
+\midrule
+\textit{Mosquitto} & Pur inviando, correttamente, il doppio pubrel, il broker in questo caso pubblica solamente uno dei due pacchetti. Infatti il client sembra ricevere indietro, nell'ordine, il pubcomp relativo al primo pacchetto, successivamente la pubblicazione di quest'ultimo e infine il pubcomp relativo al secondo pacchetto che, però, non viene pubblicato; perciò il broker perde un pacchetto.\\
+\textit{EMQ X} & In questo caso il broker si comporta esattamente come Mosquitto; viene perso il secondo pacchetto. \\
+\textit{HiveMQ} & A differenza di EMQ X e Mosquitto, questo broker pubblica entrambi i pacchetti nell'ordine prestabilito, ricevendo indietro prima i relativi pubcomp; perciò in questo caso non c'è alcuna perdita di pacchetti. \\
+\textit{Moquette} & Il broker si comporta in maniera del tutto simile ad HiveMQ; infatti pubblica entrambi i pacchetti, tuttavia il client riceve indietro i pubcomp solo dopo la pubblicazione dei pacchetti.\\
+\textit{Aedes} & Il broker ha un comportamento molto strano. Vengono effettuati due publish, ma entrambi riguardano il primo pacchetto; quindi il secondo, in realtà, viene perso.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Altri esperimenti}
+Sono stati effettuati altri esperimenti.
+
 \end{large}
 
 % bibliography
-%\cleardoublepage
-%\phantomsection
+\cleardoublepage
+\phantomsection
 \bibliographystyle{sapthesis} % BibTeX style
 \bibliography{bibliography} % BibTeX database without .bib extension
 

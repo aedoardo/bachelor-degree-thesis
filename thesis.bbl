@@ -37,6 +37,17 @@
   \url{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Table_3.3_-}
   (2020).
 
+\bibitem{articleTestsMQTT}
+\textsc{Sochor, H., Ferrarotti, F., and Ramler, R.}
+\newblock Automated security test generation for mqtt using attack patterns.
+\newblock In \emph{Proceedings of the 15th International Conference on
+  Availability, Reliability and Security}, ARES '20. Association for Computing
+  Machinery, New York, NY, USA (2020).
+\newblock ISBN 9781450388337.
+\newblock Available from: \url{https://doi.org/10.1145/3407023.3407078}, \href
+  {http://dx.doi.org/10.1145/3407023.3407078}
+  {\path{doi:10.1145/3407023.3407078}}.
+
 \bibitem{wiki:Mirai}
 \textsc{Wikipedia}.
 \newblock {Mirai (malware)} --- {W}ikipedia{,} the free encyclopedia.

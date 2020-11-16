@@ -29,3 +29,6 @@
 \contentsline {subsubsection}{Risultati ottenuti}{19}{section*.28}%
 \contentsline {subsection}{\numberline {3.3.4}Publish QoS 2 e 0}{20}{subsection.3.3.4}%
 \contentsline {subsubsection}{Risultati ottenuti}{21}{section*.30}%
+\contentsline {subsection}{\numberline {3.3.5}Doppio publish QoS 2}{22}{subsection.3.3.5}%
+\contentsline {subsubsection}{Risultati ottenuti}{23}{section*.32}%
+\contentsline {subsection}{\numberline {3.3.6}Altri esperimenti}{23}{subsection.3.3.6}%
