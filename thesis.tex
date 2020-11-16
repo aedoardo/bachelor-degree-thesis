@@ -345,7 +345,7 @@ Questa funzionalità viene specificata dal client nel momento della connessione;
 \begin{large}
 Per ricercare possibili anomalie prodotte dalle librerie broker MQTT, c'è stata la necessità di implementare una libreria client la quale potesse permettere di gestire a basso livello i pacchetti e il loro flusso; infatti le librerie come \textit{paho} per python e \textit{mqtt.js} per nodejs non permettono di lavorare a basso livello.
 
-\section{La libreria client}
+\section{Implementazione del protocollo}
 La libreria client è stata scritta in python e utilizza la libreria \textit{twisted} \cite{wiki:Twisted}. 
 Sono stati implementati tutti i pacchetti che MQTT mette a disposizione, inclusi tutti i livelli QoS. \\
 Un esempio di pacchetto costruito è quello publish; i vari campi sono descritti nella \autoref{tab:publish}, qui possiamo vedere il \textit{fixed header} del pacchetto.
@@ -709,7 +709,25 @@ Ulteriori esperimenti sono riassunti nella lista sottostante assieme ad una brev
 \item \textit{wildcard} codificato in: \textit{utf-16}, \textit{zzlib}, \textit{bz2} e \textit{base64}. Negli ultimi tre casi, il pacchetto subscribe è stato inviato correttamente e gestito altrettanto dal broker; per quanto riguarda la prima codifica utilizzata, l'utf-16, è sempre avvenuta la disconnessione del client;
 \item flood pacchetti publish QoS 0: tutti i broker hanno gestito correttamente il flood dei pacchetti senza andare in crash;
 \item versione (o nome) del protocollo non validi nel pacchetto di connessione: tutti i broker hanno disconnesso il client;
+\item invio di un pacchetto pubrel riferito ad un pacchetto publish mai inviato: i broker, tranne \textit{Aedes}, hanno risposto mandando indietro al client il pubcomp relativo; in \textit{Aedes}, invece, avviene la disconnessione del client.
+\item payload pacchetto di pubblicazione di 100MB: solamente \textit{Mosquitto} ha gestito il test correttamente, mentre in tutti gli altri casi è avvenuta la disconnessione del client.
 \end{itemize}
+
+\section{Librerie client}
+Parallelamente ai test eseguiti sulle librerie broker, ne sono stati effettuati alcuni anche su quelle client disponibili in rete. Sono state prese in esame tre librerie: \textit{paho}, \textit{mqttools} e \textit{mqtt.js}; le prime due sono entrambe scritte in \textit{python}, mentre l'ultima è in \textit{javascript}. \\
+
+I test eseguiti non hanno rivelato particolari anomalie, anche perché sono librerie open source mantenute da community attive. Alcuni degli esperimenti effettuati sono riassunti nella lista sottostante:
+
+\begin{itemize}
+\item livello QoS non valido: tutte le librerie riportano l'errore che il QoS specificato per la pubblicazione del messaggio non è valido, bloccandone così l'invio. Da notare che in \textit{mqtt.js} avviene il crash del client a causa di un errore riferito agli indici di un \textit{array};
+\item sottoscrizione ad un wildcard non valido: \textit{mqtt.js} fa notare nella console l'errore, generando il log \textit{"Invalid topic"}. Le altre librerie, invece, sembrano andare in \textit{timeout};
+\item \textit{client id} non codificato in utf8: per quanto riguarda \textit{mqttools} il client non riesce a connettersi al broker; in \textit{paho} il client si connette con successo al broker, mentre in \textit{mqtt.js} viene generato un errore e, quindi, non viene stabilita la connessione;
+\item topic con più di 65536 caratteri: in tutt'e tre le librerie avviene la disconnessione del client.
+\end{itemize}
+
+
+\section{Dispositivo fisico}
+
 
 \end{large}
 

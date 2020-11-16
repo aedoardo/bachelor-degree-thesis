@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{Last and will testament}{11}{section*.21}%
 \contentsline {subsubsection}{Clean session o persisted session}{11}{section*.22}%
 \contentsline {chapter}{\numberline {3}Implementazione ed esperimenti}{13}{chapter.3}%
-\contentsline {section}{\numberline {3.1}La libreria client}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.1}Implementazione del protocollo}{13}{section.3.1}%
 \contentsline {section}{\numberline {3.2}I broker studiati}{15}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Mosquitto}{15}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}EMQ X}{16}{subsection.3.2.2}%
@@ -32,3 +32,5 @@
 \contentsline {subsection}{\numberline {3.3.5}Doppio publish QoS 2}{22}{subsection.3.3.5}%
 \contentsline {subsubsection}{Risultati ottenuti}{23}{section*.32}%
 \contentsline {subsection}{\numberline {3.3.6}Altri esperimenti}{23}{subsection.3.3.6}%
+\contentsline {section}{\numberline {3.4}Librerie client}{24}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Dispositivo fisico}{25}{section.3.5}%
