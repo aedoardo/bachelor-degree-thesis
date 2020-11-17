@@ -453,6 +453,7 @@ Alcuni test effettuati sono stati creati prendendo spunto da questo articolo \ci
 \newpage
 
 \subsection{Publish QoS 2 e 1}
+\label{chap:publishqos2e1}
 
 \begin{python}
 [    
@@ -727,8 +728,76 @@ I test eseguiti non hanno rivelato particolari anomalie, anche perché sono libr
 
 
 \section{Dispositivo fisico}
+Nella domotica, il protocollo MQTT è molto utilizzato dato che la maggior parte dei dispositivi "intelligenti" lo supporta. 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{images/shelly-smart.jpg}
+\caption{Dispositivo Shelly.}
+\label{fig:shellyduo}
+\end{figure}
 
+Nella \autoref{fig:shellyduo} si può vedere il dispositivo fisico sul quale sono stati eseguiti alcuni test che hanno confermato i risultati precedentemente ottenuti. Questa lampadina supporta la comunicazione attraverso il protocollo MQTT; infatti è possibile accenderla, spegnerla e cambiarle la luminosità e il tipo di luce da remoto. \\
 
+La configurazione del protocollo, in questo dispositivo, avviene in una semplice interfaccia web, disponibile sulla rete al quale è connesso, in cui bisogna specificare l'indirizzo e la porta del server su cui gira il broker MQTT. È possibile anche scegliere il livello di QoS sul quale far viaggiare i pacchetti e alcuni valori come \textit{min reconnect timeout}, \textit{max reconnnect timeout} e \textit{keepalive}. Inoltre è possibile specificare username e password nel caso in cui la connessione richieda l'autenticazione dell'utente. Infine permette di specificare la flag della \textit{cleanSession} e del \textit{retain}. \\
+
+\newcommand{\deviceshelly}{D0CC77}
+Questo dispositivo mette a disposizione dell'utente diversi topic con cui lavorare; ecco quelli più importanti:
+
+\begin{itemize}
+\item \textit{shellies/announce}: in questo topic viene pubblicato un messaggio dal dispositivo che contiene informazioni utili come: \textit{id}, \textit{model}, indirizzo mac, indirizzo ip, \textit{new\_fw} e \textit{fw\_ver}. Gli ultimi due valori si riferiscono al firmware del dispositivo, il primo è una variabile booleana la quale indica se c'è un aggiornamento da eseguire, il secondo indica la versione del \textit{firmware};
+\item \textit{shellies/ShellyBulbDuo-\deviceshelly/info}: fornisce alcune informazioni del dispositivo come ad esempio la rete al quale è connesso, lo stato della memoria e aggiornamenti firmware;
+\item \textit{shellies/ShellyBulbDuo-\deviceshelly/light/0/command}: permette di accendere o spegnere il dispositivo passando come payload "on" o "off";
+\item \textit{shellies/ShellyBulbDuo-\deviceshelly/light/0/set}: permette di modificare lo stato del dispositivo passando semplicemente un payload \textit{json};
+\item \textit{shellies/ShellyBulbDuo-\deviceshelly/light/0/status}: riporta le informazioni dello stato attuale del dispositivo.
+\end{itemize}
+
+Il server broker scelto per far collegare il dispositivo è \textit{Mosquitto}. Dai test effettuati, si è visto che il dispositivo, di per sé, non ha un "anti-flood" per quanto riguarda i pacchetti ricevuti; infatti, teoricamente, è possibile, ad esempio, spegnere ed accendere la lampadina in maniera ripetuta e veloce attraverso l'invio di un publish sul topic specifico. \\
+
+Interessanti sono stati i risultati dei test precedentemente effettuati sul broker. Ad esempio, il test nella sezione \ref{chap:publishqos2e1} è stato eseguito di nuovo, ma questa volta sul dispositivo stesso. \\
+Il contenuto del file di test, ovviamente, è leggermente diverso da quello presente in \ref{chap:publishqos2e1}; in questo caso pubblichiamo due pacchetti publish dove l'unica differenza è il parametro \textit{turn}, che sul primo è "on" mentre sul secondo "off". \\
+
+\newpage
+\begin{python}
+[   
+    {
+        "type": "publish",
+        "params": {
+            "topic": "shellies/ShellyBulbDuo-D0CC77/light/0/set",
+            "message": "{\"brightness\":50,\"white\":50,\"temp\":2700,\"turn\":\"on\"}",
+            "qos": 1,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "publish",
+        "params": {
+            "topic": "shellies/ShellyBulbDuo-D0CC77/light/0/set",
+            "message": "{\"brightness\":50,\"white\":50,\"temp\":2700,\"turn\":\"off\"}",
+            "qos": 1,
+            "dup": false,
+            "retain": false,
+            "packetId": 1
+        }
+    },
+    {
+        "type": "pubrel",
+        "params": {
+            "packetId": 1
+        }
+    }
+]
+\end{python}
+Come ci si poteva aspettare, viene pubblicato solamente il primo aggiornamento e quindi la lampadina non esegue il secondo comando, che equivale a quello di spegnimento. \\
+
+Sono stati effettuati anche altre tipologie di test, come un payload codificato stranamente o payload pesanti; in tutti i casi il dispositivo ignora il messaggio malformato non producendo alcun aggiornamento.
+\end{large}
+
+\chapter{Conclusioni}
+
+\begin{large}
+Qui ci vanno le conclusioni della relazione.
 \end{large}
 
 % bibliography
