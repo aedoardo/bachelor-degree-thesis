@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  18 NOV 2020 16:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  18 NOV 2020 22:08
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1403,6 +1403,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 814--815
 
 ]
 Capitolo 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 822--825
+
+ []
+
 [31] [32
 
 ] [33] [34
@@ -1420,21 +1425,21 @@ c . erl$[]
 [35
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 836.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 838.
  [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 836.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 838.
  (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 836.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 836.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 838.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 838.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 9375D35A710A848187A5AC4C6FCA8E84;1691.
  ) 
 Here is how much of TeX's memory you used:
- 15426 strings out of 480790
- 234765 string characters out of 2914071
+ 15428 strings out of 480790
+ 234787 string characters out of 2914071
  930583 words of memory out of 3000000
  30590 multiletter control sequences out of 15000+200000
- 622899 words of font info for 167 fonts, out of 3000000 for 9000
+ 623028 words of font info for 168 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,11n,101p,975b,1776s stack positions out of 5000i,500n,10000p,200000b,50000s
 {E:/latex/fonts/enc/dvips/lm/lm-ec.enc}{E:/latex/fonts/enc/dvips/lm/lm-ts1.en
@@ -1446,7 +1451,7 @@ type1/public/lm/lmri12.pfb><E:/latex/fonts/type1/public/lm/lmss10.pfb><E:/latex
 /fonts/type1/public/lm/lmss17.pfb><E:/latex/fonts/type1/public/lm/lmtk10.pfb><E
 :/latex/fonts/type1/public/lm/lmtt10.pfb><E:/latex/fonts/type1/public/lm/lmtt9.
 pfb>
-Output written on thesis.pdf (42 pages, 656205 bytes).
+Output written on thesis.pdf (42 pages, 656686 bytes).
 PDF statistics:
  772 PDF objects out of 1000 (max. 8388607)
  325 named destinations out of 1000 (max. 500000)
