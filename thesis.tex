@@ -52,7 +52,7 @@
 
 \maketitle
 
-\dedication{Dediche.\\}
+\dedication{Alla mia famiglia.\\}
 
 %\begin{acknowledgments}
 %Ringraziamenti
@@ -92,7 +92,7 @@ Se effettuiamo la stessa ricerca adesso, abbiamo un numero maggiore come si vede
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.8]{images/mqtt-2020numbers.png}
-\caption{Numero dispositivi MQTT 2020.}
+\caption{Numero dispositivi MQTT 2020, statistiche di Shodan \cite{shodan}.}
 \label{fig:mqtt2020}
 \end{figure}
 
@@ -109,7 +109,9 @@ In questa relazione viene descritto lo studio effettuato su uno dei maggiori pro
 
 Nel \textbf{Capitolo 2} sarà analizzato il protocollo nel dettaglio assieme alle sue principali caratteristiche e funzionalità. \\
 
-Nel \textbf{Capitolo 3} viene analizzata la libreria che è stata scritta ai fini del tirocinio. In questo capitolo sono anche descritti i differenti broker su cui sono stati effettuati i test e vengono riportati i risultati di alcuni.
+Nel \textbf{Capitolo 3} viene analizzata la libreria che è stata scritta ai fini del tirocinio. In questo capitolo sono anche descritti i differenti broker e il dispositivo fisico su cui sono stati effettuati i test e vengono riportati i risultati di alcuni. \\
+
+Nel \textbf{Capitolo 4} sono riportate le conclusioni del lavoro svolto durante il tirocinio.
 
 \end{large}
 
@@ -339,6 +341,11 @@ Questo meccanismo, indicato anche con \textit{LWT}, ci permette di gestire megli
 
 \subsubsection{Clean session o persisted session}
 Questa funzionalità viene specificata dal client nel momento della connessione; infatti nel pacchetto \textit{connect} (\autoref{tab:connect}) viene specificata una variabile \textit{cleanSession}. Nel caso di una persisted session il client riceverà dal broker tutti i messaggi pubblicati sui topic a cui si era sottoscritto che sono stati inviati mentre era offline.
+
+
+\subsubsection{MQTT 5}
+Questa versione del protocollo è stata rilasciata nel 2018 e non è ancora utilizzata da tutti i dispositivi. Rispetto alla precedente versione, sono stati aggiunti i \textit{reason codes} i quali riportano il tipo di errore relativo al protocollo che è avvenuto. La \textit{clean session} non è più presente e al suo posto c'è la flag \textit{clean start}. È stato aggiunto anche un nuovo pacchetto, l'\textit{AUTH} packet, utilizzato ad esempio per le autenticazioni \textit{OAuth}. Il pacchetto \textit{disconnect} in MQTT 5 è bi-direzionale: il broker invia un pacchetto di tipo \textit{disconnect} prima di chiudere la connessione. In questo modo il client può intercettare il motivo della disconnessione ed agire di conseguenza.
+
 \end{large}
 
 \chapter{Implementazione ed esperimenti}
@@ -383,7 +390,7 @@ def publish(self, topic, message, dup=False, qos=0, retain=False, messageId=None
     
     if qos > 0:
     	if messageId is None:
-    		varHeader.extend(_encodeValue(random.randing(1, 65535)))
+    		varHeader.extend(_encodeValue(random.randint(1, 65535)))
     	else:
     		varHeader.extend(_encodeValue(messageId))
     
@@ -791,14 +798,34 @@ Il contenuto del file di test, ovviamente, è leggermente diverso da quello pres
 \end{python}
 Come ci si poteva aspettare, viene pubblicato solamente il primo aggiornamento e quindi la lampadina non esegue il secondo comando, che equivale a quello di spegnimento. \\
 
-Sono stati effettuati anche altre tipologie di test, come un payload codificato stranamente o payload pesanti; in tutti i casi il dispositivo ignora il messaggio malformato non producendo alcun aggiornamento.
+Sono stati effettuati anche altre tipologie di test, come un payload codificato stranamente o payload pesanti; in tutti i casi il dispositivo ignora il messaggio malformato non producendo alcun aggiornamento. \\
+
+Una delicata parte di questi dispositivi è sicuramente il \textit{firmware}. Quest'ultimo è un programma implementato direttamente nel componente elettronico; nel caso di \textit{Shelly}, il firmware non è \textit{open source}, per cui non si hanno le sorgenti. I dispositivi IoT, per natura, non hanno grandi risorse: poca memoria e processori poco performanti; di conseguenza anche i software devono essere piuttosto leggeri e quindi potrebbero esserci falle di sicurezza. Gli attacchi basati su \textit{firmware} in IoT sono abbastanza comuni e rappresentano un bel problema che non è facile da arginare. In \cite{firmwareattack} sono descritte 5 categorie di attacchi basati su firmware:
+\begin{itemize}
+\item \textit{reverse engineering}: consiste nell'estrare il firmware ed analizzarlo, andando alla ricerca di possibili vulnerabilità;
+\item \textit{firmware modification}: consiste nell'inserire codice malevolo all'interno del firmware;
+\item \textit{obtaining access authorization}: se il dispositivo comunica con altri dispositivi, previa autenticazione, l'attaccante può attaccare anche quest'ultimi;
+\item \textit{installing unauthorized firmware}: l'attaccante può installare un firmware malevolo per prendere il controllo del dispositivo e, ad esempio, farlo così partecipare ad una botnet;
+\item \textit{unauthorized device}: consiste nell'utilizzare il firmware del dispositivo valido su uno non valido; possibili problemi di privacy. \\
+\end{itemize}
+
+Attraverso queste possibili vulnerabilità, l'attaccante può prendere il controllo del dispositivo e farlo partecipare a possibili attacchi. Ad esempio, una tipologia nuova di attacco, basato su MQTT, è descritto in \cite{articleSlowITe}. L'idea alla base è quella di inizializzare un alto numero di client col server fino ad arrivare alla saturazione del pool di connessioni del broker. \\
+
+Oltre agli attacchi, ovviamente, un dispositivo vulnerabile può causare una violazione della privacy non di poco conto. Ad esempio, una volta che l'attaccante ha preso il controllo remoto di un dispositivo nella rete potrebbe effettuare un attacco di tipo \textit{man in the middle} per visualizzare il flusso dei messaggi dagli altri dispositivi collegati. In aggiunta a questo, l'attaccante potrebbe anche avere accesso a tutti i dispositivi domotici collegati in casa e, paradossalmente, potrebbe prendere il controllo di quest'ultima. \\
+
+Iniziano ad essere diffusi anche i malware di tipo \textit{ransomware} nei confronti dei dispositivi IoT. Un \textit{ransomware} è un malware che limita l'accesso al dispositivo e, affinché si riprenda il controllo, viene richiesto un riscatto da pagare, di solito in bitcoin (inoltre non si è sicuri di poter ri-ottenere il controllo).
 \end{large}
 
 \chapter{Conclusioni}
 
 \begin{large}
-Qui ci vanno le conclusioni della relazione.
+In questa relazione è stato descritto tutto il lavoro di studio durante l'attività di tirocinio. Inizialmente si sono cercate possibili vulnerabilità in MQTT stesso ma essendo un protocollo piuttosto semplice non è stato trovato alcunché. Invece, dai test effettuati sui differenti broker presi in esame, si son notate alcune anomalie e differenze nella gestione di alcuni test effettuati. In effetti non tutti i broker si son comportati secondo gli standard definiti per MQTT e questi esempi potrebbero essere un punto d'inizio per iniziare a rendere i comportamenti dei server uguali. \\
+Per quanto riguarda il dispositivo fisico provato, si è visto che gestisce bene alcuni test strani, tuttavia manca, a mio parere, un controllo sul numero di pacchetti ricevuti in un intervallo di tempo. Il vero problema di questi dispositivi, probabilmente, è il \textit{firmware}; quest'ultimo è possibile aggiornarlo anche tramite MQTT, pubblicando un messaggio particolare (nel caso dello shelly in \textit{announce/command}). \\
+Come visto nell'introduzione, il protocollo sta prendendo sempre più piede nelle piccole realtà; questo può preoccupare. Molti broker presenti in rete, infatti, non hanno alcuna protezione per l'accesso e, perciò, ci si può connettere senza problemi e rimanere in ascolto su quei canali.
 \end{large}
+
+\chapter*{Ringraziamenti}
+\addcontentsline{toc}{chapter}{Ringraziamenti}
 
 % bibliography
 \cleardoublepage

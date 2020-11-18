@@ -25,11 +25,13 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduzione}{1}{chapter.1}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\citation{shodan}
+\citation{shodan}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Numero dispositivi MQTT 2018.\relax }}{2}{figure.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:mqtt2018}{{1.1}{2}{Numero dispositivi MQTT 2018.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Numero dispositivi MQTT 2020.\relax }}{2}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:mqtt2020}{{1.2}{2}{Numero dispositivi MQTT 2020.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Numero dispositivi MQTT 2020, statistiche di Shodan \cite  {shodan}.\relax }}{2}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:mqtt2020}{{1.2}{2}{Numero dispositivi MQTT 2020, statistiche di Shodan \cite {shodan}.\relax }{figure.caption.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Numero dispositivi MQTT 2020, port:1883.\relax }}{2}{figure.caption.4}\protected@file@percent }
 \newlabel{fig:mqttport2020}{{1.3}{2}{Numero dispositivi MQTT 2020, port:1883.\relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}MQTT}{5}{chapter.2}\protected@file@percent }
@@ -71,13 +73,14 @@
 \@writefile{toc}{\contentsline {subsubsection}{Retained message}{11}{section*.20}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Last and will testament}{11}{section*.21}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Clean session o persisted session}{11}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{MQTT 5}{11}{section*.23}\protected@file@percent }
 \citation{wiki:Twisted}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementazione ed esperimenti}{13}{chapter.3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Implementazione del protocollo}{13}{section.3.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Fixed header publish packet.\relax }}{13}{table.caption.23}\protected@file@percent }
-\newlabel{tab:publishbytes}{{3.1}{13}{Fixed header publish packet.\relax }{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Fixed header publish packet.\relax }}{13}{table.caption.24}\protected@file@percent }
+\newlabel{tab:publishbytes}{{3.1}{13}{Fixed header publish packet.\relax }{table.caption.24}{}}
 \citation{oasis:publish}
 \citation{Light2017}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}I broker studiati}{15}{section.3.2}\protected@file@percent }
@@ -92,42 +95,48 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Esperimenti effetuati}{16}{section.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Publish QoS 2 e 1}{17}{subsection.3.3.1}\protected@file@percent }
 \newlabel{chap:publishqos2e1}{{3.3.1}{17}{Publish QoS 2 e 1}{subsection.3.3.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{18}{section*.24}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Risultati test pubblicazione QoS 2 e 1.\relax }}{18}{table.caption.25}\protected@file@percent }
-\newlabel{tab:resultsqos2and1}{{3.2}{18}{Risultati test pubblicazione QoS 2 e 1.\relax }{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{18}{section*.25}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.2}{\ignorespaces Risultati test pubblicazione QoS 2 e 1.\relax }}{18}{table.caption.26}\protected@file@percent }
+\newlabel{tab:resultsqos2and1}{{3.2}{18}{Risultati test pubblicazione QoS 2 e 1.\relax }{table.caption.26}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}15000 subscription}{18}{subsection.3.3.2}\protected@file@percent }
 \citation{emqxsource}
-\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{19}{section*.26}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Risultati test sottoscrizione di 15000 pacchetti.\relax }}{19}{table.caption.27}\protected@file@percent }
-\newlabel{tab:results15ksub}{{3.3}{19}{Risultati test sottoscrizione di 15000 pacchetti.\relax }{table.caption.27}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{19}{section*.27}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.3}{\ignorespaces Risultati test sottoscrizione di 15000 pacchetti.\relax }}{19}{table.caption.28}\protected@file@percent }
+\newlabel{tab:results15ksub}{{3.3}{19}{Risultati test sottoscrizione di 15000 pacchetti.\relax }{table.caption.28}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Topic lungo}{19}{subsection.3.3.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{19}{section*.28}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Risultati test topic lungo 4097 caratteri.\relax }}{19}{table.caption.29}\protected@file@percent }
-\newlabel{tab:resultslongtopic}{{3.4}{19}{Risultati test topic lungo 4097 caratteri.\relax }{table.caption.29}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{19}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.4}{\ignorespaces Risultati test topic lungo 4097 caratteri.\relax }}{19}{table.caption.30}\protected@file@percent }
+\newlabel{tab:resultslongtopic}{{3.4}{19}{Risultati test topic lungo 4097 caratteri.\relax }{table.caption.30}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.4}Publish QoS 2 e 0}{20}{subsection.3.3.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{21}{section*.30}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Risultati Publish test QoS 2 e 0.\relax }}{21}{table.caption.31}\protected@file@percent }
-\newlabel{tab:resultsqos2and0}{{3.5}{21}{Risultati Publish test QoS 2 e 0.\relax }{table.caption.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{21}{section*.31}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.5}{\ignorespaces Risultati Publish test QoS 2 e 0.\relax }}{21}{table.caption.32}\protected@file@percent }
+\newlabel{tab:resultsqos2and0}{{3.5}{21}{Risultati Publish test QoS 2 e 0.\relax }{table.caption.32}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.5}Doppio publish QoS 2}{22}{subsection.3.3.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{23}{section*.32}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces Risultati Publish test doppio QoS 2.\relax }}{23}{table.caption.33}\protected@file@percent }
-\newlabel{tab:resultsdoubleqos2}{{3.6}{23}{Risultati Publish test doppio QoS 2.\relax }{table.caption.33}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Risultati ottenuti}{23}{section*.33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3.6}{\ignorespaces Risultati Publish test doppio QoS 2.\relax }}{23}{table.caption.34}\protected@file@percent }
+\newlabel{tab:resultsdoubleqos2}{{3.6}{23}{Risultati Publish test doppio QoS 2.\relax }{table.caption.34}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.6}Altri esperimenti}{23}{subsection.3.3.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3.4}Librerie client}{24}{section.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3.5}Dispositivo fisico}{25}{section.3.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Dispositivo Shelly.\relax }}{25}{figure.caption.34}\protected@file@percent }
-\newlabel{fig:shellyduo}{{3.1}{25}{Dispositivo Shelly.\relax }{figure.caption.34}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Conclusioni}{29}{chapter.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Dispositivo Shelly.\relax }}{25}{figure.caption.35}\protected@file@percent }
+\newlabel{fig:shellyduo}{{3.1}{25}{Dispositivo Shelly.\relax }{figure.caption.35}{}}
+\citation{firmwareattack}
+\citation{articleSlowITe}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Conclusioni}{31}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{Ringraziamenti}{33}{chapter*.36}\protected@file@percent }
 \bibstyle{sapthesis}
 \bibdata{bibliography}
-\bibcite{emqxsource}{1}
-\bibcite{articleAvast}{2}
-\bibcite{Light2017}{3}
-\bibcite{Moquette}{4}
-\bibcite{Aedes}{5}
-\bibcite{oasis:publish}{6}
-\bibcite{articleTestsMQTT}{7}
-\bibcite{wiki:Mirai}{8}
-\bibcite{wiki:Twisted}{9}
+\bibcite{firmwareattack}{1}
+\bibcite{emqxsource}{2}
+\bibcite{articleAvast}{3}
+\bibcite{Light2017}{4}
+\bibcite{Moquette}{5}
+\bibcite{Aedes}{6}
+\bibcite{oasis:publish}{7}
+\bibcite{shodan}{8}
+\bibcite{articleTestsMQTT}{9}
+\bibcite{articleSlowITe}{10}
+\bibcite{wiki:Mirai}{11}
+\bibcite{wiki:Twisted}{12}

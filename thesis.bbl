@@ -1,4 +1,15 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{firmwareattack}
+\textsc{Bettayeb, M., Nasir, Q., and Talib, M.~A.}
+\newblock Firmware update attacks and security for iot devices: Survey.
+\newblock In \emph{Proceedings of the ArabWIC 6th Annual International
+  Conference Research Track}, ArabWIC 2019. Association for Computing
+  Machinery, New York, NY, USA (2019).
+\newblock ISBN 9781450360890.
+\newblock Available from: \url{https://doi.org/10.1145/3333165.3333169}, \href
+  {http://dx.doi.org/10.1145/3333165.3333169}
+  {\path{doi:10.1145/3333165.3333169}}.
 
 \bibitem{emqxsource}
 \textsc{EMQX}.
@@ -37,6 +48,11 @@
   \url{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Table_3.3_-}
   (2020).
 
+\bibitem{shodan}
+\textsc{Shodan}.
+\newblock Shodan website.
+\newblock \url{https://shodan.io} (2020).
+
 \bibitem{articleTestsMQTT}
 \textsc{Sochor, H., Ferrarotti, F., and Ramler, R.}
 \newblock Automated security test generation for mqtt using attack patterns.
@@ -47,6 +63,13 @@
 \newblock Available from: \url{https://doi.org/10.1145/3407023.3407078}, \href
   {http://dx.doi.org/10.1145/3407023.3407078}
   {\path{doi:10.1145/3407023.3407078}}.
+
+\bibitem{articleSlowITe}
+\textsc{Vaccari, I., Aiello, M., and Cambiaso, E.}
+\newblock Slowite, a novel denial of service attack affecting mqtt.
+\newblock \emph{Sensors}, \textbf{20} (2020), 2932.
+\newblock \href {http://dx.doi.org/10.3390/s20102932}
+  {\path{doi:10.3390/s20102932}}.
 
 \bibitem{wiki:Mirai}
 \textsc{Wikipedia}.
