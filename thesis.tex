@@ -823,15 +823,15 @@ In questa relazione è stato descritto tutto il lavoro di studio durante l'attiv
 Per quanto riguarda il dispositivo fisico provato, si è visto che gestisce bene alcuni test strani, tuttavia manca, a mio parere, un controllo sul numero di pacchetti ricevuti in un intervallo di tempo. Il vero problema di questi dispositivi, probabilmente, è il \textit{firmware}; quest'ultimo è possibile aggiornarlo anche tramite MQTT, pubblicando un messaggio particolare (nel caso dello shelly in \textit{announce/command}). \\
 Come visto nell'introduzione, il protocollo sta prendendo sempre più piede nelle piccole realtà; questo può preoccupare. Molti broker presenti in rete, infatti, non hanno alcuna protezione per l'accesso e, perciò, ci si può connettere senza problemi e rimanere in ascolto su quei canali. Inoltre, molti di questi non sono neppure aggiornati all'ultima versione di MQTT dato che utilizzano la versione 3.1.1. \\
 
-Dopo l'attività di tirocinio riguardante il protocollo, sono certo che questo prenderà sempre più largo nella quotidianità. Ad esempio è stato utilizzato anche in \textit{Facebook Messenger} per lo scambio dei messaggi fra gli utenti grazie alla poca richiesta di banda per poter funzionare. Tuttavia credo che il tema sicurezza riguardo MQTT debba essere ulteriormente approfondito.
+Dopo l'attività di tirocinio riguardante il protocollo, sono certo che questo prenderà sempre più largo nella quotidianità però il tema sicurezza deve essere ancora ulteriormente approfondito. Il codice sviluppato durante il tirocinio è disponibile su GitHub \footnote{https://github.com/aedoardo/mqtt repository GitHub del progetto}.
 \end{large}
 
 \chapter*{Ringraziamenti}
 \addcontentsline{toc}{chapter}{Ringraziamenti}
 
 % bibliography
-\cleardoublepage
-\phantomsection
+%\cleardoublepage
+%\phantomsection
 \bibliographystyle{sapthesis} % BibTeX style
 \bibliography{bibliography} % BibTeX database without .bib extension
 
