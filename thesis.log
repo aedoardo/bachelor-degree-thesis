@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  20 NOV 2020 09:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.9.14)  20 NOV 2020 22:48
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1399,22 +1399,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 814--815
 
  []
 
-[28] [29] [30
-
-]
+[28]
 Capitolo 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 822--825
+Underfull \hbox (badness 10000) in paragraph at lines 821--824
 
  []
 
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 826.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 826.
-[31] [32
 
-] (thesis.bbl [33] [34
+Underfull \hbox (badness 10000) in paragraph at lines 825--826
+
+ []
+
+[29
+
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 828.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 828.
+ [30]
+Underfull \hbox (badness 10000) in paragraph at lines 834--835
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 836--837
+
+ []
+
+(thesis.bbl [31
+
+] [32
 
 ]
 Package microtype Info: Character `029' is missing
@@ -1426,24 +1442,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--20
 c . erl$[]
  []
 
-[35])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 838.
- [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 838.
+[33])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 847.
+ [34]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 847.
  (thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 838.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 838.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 847.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 847.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 9375D35A710A848187A5AC4C6FCA8E84;1691.
  ) 
 Here is how much of TeX's memory you used:
- 15468 strings out of 480790
- 235340 string characters out of 2914071
+ 15460 strings out of 480790
+ 235260 string characters out of 2914071
  930583 words of memory out of 3000000
  30612 multiletter control sequences out of 15000+200000
- 639615 words of font info for 182 fonts, out of 3000000 for 9000
+ 639320 words of font info for 179 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 63i,11n,101p,975b,1776s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,12n,101p,954b,1776s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1457,9 +1473,9 @@ ype1/public/lm/lmri10.pfb><E:/latex/fonts/type1/public/lm/lmri12.pfb><E:/latex/
 fonts/type1/public/lm/lmss10.pfb><E:/latex/fonts/type1/public/lm/lmss17.pfb><E:
 /latex/fonts/type1/public/lm/lmtk10.pfb><E:/latex/fonts/type1/public/lm/lmtt10.
 pfb><E:/latex/fonts/type1/public/lm/lmtt9.pfb>
-Output written on thesis.pdf (42 pages, 713894 bytes).
+Output written on thesis.pdf (40 pages, 713857 bytes).
 PDF statistics:
- 785 PDF objects out of 1000 (max. 8388607)
- 325 named destinations out of 1000 (max. 500000)
+ 775 PDF objects out of 1000 (max. 8388607)
+ 323 named destinations out of 1000 (max. 500000)
  36616 words of extra memory for PDF output out of 42996 (max. 10000000)
 

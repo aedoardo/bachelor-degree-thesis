@@ -35,5 +35,5 @@
 \contentsline {subsection}{\numberline {3.3.6}Altri esperimenti}{23}{subsection.3.3.6}%
 \contentsline {section}{\numberline {3.4}Librerie client}{24}{section.3.4}%
 \contentsline {section}{\numberline {3.5}Dispositivo fisico}{25}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Conclusioni}{31}{chapter.4}%
-\contentsline {chapter}{Ringraziamenti}{33}{chapter*.36}%
+\contentsline {chapter}{\numberline {4}Conclusioni}{29}{chapter.4}%
+\contentsline {chapter}{Ringraziamenti}{31}{chapter*.36}%
