@@ -1,4 +1,6 @@
-# bachelor-degree-thesis
+# Analisi delle problematiche di sicurezza del protocollo MQTT
+
+## Bachelor Degree Thesis
 
 [Thesis PDF](https://github.com/aedoardo/bachelor-degree-thesis/blob/main/thesis.pdf)
 
